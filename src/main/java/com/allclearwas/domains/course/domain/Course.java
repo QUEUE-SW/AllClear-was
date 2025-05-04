@@ -44,7 +44,7 @@ public class Course {
 	private Category category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "courseInfo")
+	@JoinColumn(name = "courseInfo_id")
 	private CourseInfo courseInfo;
 
 	@Builder
