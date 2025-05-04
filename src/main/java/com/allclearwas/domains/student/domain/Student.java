@@ -49,7 +49,8 @@ public class Student {
 	@Column(nullable = false)
 	private int grade;
 
-
+	@OneToOne(mappedBy = "student")
+	private StudentPolicy studentPolicy;
 
 	@Builder
 	public Student(int identifier, String password, String name, College college, Department department, Major major,

@@ -9,6 +9,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +34,7 @@ public class StudentPolicy {
 	@Enumerated(EnumType.STRING)
 	private Semester semester;
 
+	@OneToOne
+	@JoinColumn(name = "student_id")
+	private Student student;
 }
