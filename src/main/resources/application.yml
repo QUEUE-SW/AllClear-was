@@ -11,6 +11,11 @@ spring:
   profiles:
     active: local
 
+jwt:
+  token:
+    access:
+      expire-time: ${JWT_ACCESS_EXPIRE_TIME:7200000}
+      secret-key: ${JWT_ACCESS_SECRET_KEY:thisisexamplesecretkeyforaccesstokenthisisexamplesecretkeyforaccesstokenthisisexamplesecretkey}
 
 ---
 spring:
