@@ -1,0 +1,29 @@
+package com.allclearwas.domains.student.controller;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.allclearwas.common.response.SuccessResponse;
+import com.allclearwas.common.security.authentication.SecurityUserDetails;
+import com.allclearwas.domains.student.dto.response.StudentInfoResponse;
+import com.allclearwas.domains.student.service.StudentService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/students")
+public class StudentController {
+
+	private final StudentService studentService;
+
+	@GetMapping("/me")
+	public SuccessResponse<StudentInfoResponse> getStudentInfo(
+		@AuthenticationPrincipal SecurityUserDetails userDetails) {
+		Long studentId = userDetails.getStudentId();
+		StudentInfoResponse response = studentService.getStudentInfo(studentId);
+		return SuccessResponse.of(response);
+	}
+}
