@@ -1,23 +1,20 @@
-package com.allclearwas.domains.student.service;
+package com.allclearwas.domains.student.implement;
 
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
+import com.allclearwas.common.annotation.Implementation;
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.repository.StudentRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@Service
+@Implementation
 @RequiredArgsConstructor
-public class StudentService {
+public class StudentReader {
 
 	private final StudentRepository studentRepository;
 
-	public Optional<Student> readStudent(Long studentId) {
+	public Optional<Student> read(Long studentId) {
 		return studentRepository.findById(studentId);
 	}
 }
