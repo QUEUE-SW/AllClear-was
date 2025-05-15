@@ -12,6 +12,8 @@ import com.allclearwas.domains.student.dto.response.StudentProfileRes;
 import com.allclearwas.domains.student.service.StudentService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -30,11 +32,50 @@ public class StudentController {
 		security = {@SecurityRequirement(name = "JWT")}
 	)
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "2000", description = "학생 정보 조회 성공"),
-		@ApiResponse(responseCode = "404", description = "해당 학생이 존재하지 않음"),
-		@ApiResponse(responseCode = "403", description = "JWT 인증 실패")
+		@ApiResponse(
+			responseCode = "2000",
+			description = "학생 정보 조회 성공",
+			content = @Content(mediaType = "application/json", examples = {
+				@ExampleObject(name = "성공 예시", value = """
+					{
+					    "code": "2000",
+					    "message": "요청에 성공하였습니다.",
+					    "data": {
+					        "name": "홍길동",
+					        "identifier": 12345678,
+					        "semester": "1학기"
+					    }
+					}
+					""")
+			})
+		),
+		@ApiResponse(
+			responseCode = "404",
+			description = "해당 학생이 존재하지 않음",
+			content = @Content(mediaType = "application/json", examples = {
+				@ExampleObject(name = "실패 예시", value = """
+					{
+					    "code": "4040",
+					    "message": "해당 학생이 존재하지 않습니다.",
+					    "errors": []
+					}
+					""")
+			})
+		),
+		@ApiResponse(
+			responseCode = "403",
+			description = "JWT 인증 실패",
+			content = @Content(mediaType = "application/json", examples = {
+				@ExampleObject(name = "인증 실패", value = """
+					{
+					    "code": "4030",
+					    "message": "JWT 인증에 실패하였습니다.",
+					    "errors": []
+					}
+					""")
+			})
+		)
 	})
-
 	@GetMapping("/me")
 	public ResponseEntity<SuccessResponse<StudentProfileRes>> getStudentInfo(
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
