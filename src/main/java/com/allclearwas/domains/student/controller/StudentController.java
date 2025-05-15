@@ -77,7 +77,7 @@ public class StudentController {
 		)
 	})
 	@GetMapping("/me")
-	public ResponseEntity<SuccessResponse<StudentProfileRes>> getStudentInfo(
+	public ResponseEntity<?> getStudentInfo(
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
 		StudentProfileRes response = studentService.getStudentInfo(studentId);
