@@ -24,7 +24,15 @@ public class SwaggerConfig {
 	public GroupedOpenApi allApi() {
 		return GroupedOpenApi.builder()
 			.group("전체 보기")
-			.packagesToScan("com.allclearwas")
+			.packagesToScan("com.allclearwas.domains")
+			.build();
+	}
+
+	@Bean
+	public GroupedOpenApi authApi() {
+		return GroupedOpenApi.builder()
+			.group("인증 전체 API")
+			.packagesToScan("com.allclearwas.domains.auth")
 			.build();
 	}
 
