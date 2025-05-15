@@ -12,7 +12,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum StudentErrorCode implements BaseErrorCode {
 
-	STUDENT_NOT_FOUND(StatusCode.NOT_FOUND, ReasonCode.REQUESTED_RESOURCE_NOT_FOUND, "해당 학생이 존재하지 않습니다.");
+	STUDENT_NOT_FOUND(StatusCode.NOT_FOUND, ReasonCode.REQUESTED_RESOURCE_NOT_FOUND, "해당 학생이 존재하지 않습니다."),
+	STUDENT_IS_DUPLICATED(StatusCode.CONFLICT, ReasonCode.RESOURCE_ALREADY_EXISTS, "해당 학번의 학생이 이미 존재합니다.");
 
 	private final StatusCode statusCode;
 	private final ReasonCode reasonCode;
