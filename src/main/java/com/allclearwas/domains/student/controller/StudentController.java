@@ -1,5 +1,6 @@
 package com.allclearwas.domains.student.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.common.security.authentication.SecurityUserDetails;
-import com.allclearwas.domains.student.dto.response.StudentInfoResponse;
+import com.allclearwas.domains.student.dto.response.StudentProfileRes;
 import com.allclearwas.domains.student.service.StudentService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,10 +36,10 @@ public class StudentController {
 	})
 
 	@GetMapping("/me")
-	public SuccessResponse<StudentInfoResponse> getStudentInfo(
+	public ResponseEntity<SuccessResponse<StudentProfileRes>> getStudentInfo(
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
-		StudentInfoResponse response = studentService.getStudentInfo(studentId);
-		return SuccessResponse.of(response);
+		StudentProfileRes response = studentService.getStudentInfo(studentId);
+		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }
