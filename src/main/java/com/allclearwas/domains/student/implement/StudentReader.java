@@ -17,4 +17,8 @@ public class StudentReader {
 	public Optional<Student> read(Long studentId) {
 		return studentRepository.findById(studentId);
 	}
+
+	public Optional<Student> readByIdentifier(int identifier) {
+		return studentRepository.findByIdentifier(identifier);
+	}
 }
