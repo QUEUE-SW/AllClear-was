@@ -30,6 +30,7 @@ public class Course {
 	private Long id;
 
 	private String name;
+	private String courseCode;
 
 	@Enumerated(EnumType.STRING)
 	private Professor professor;
