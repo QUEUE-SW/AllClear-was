@@ -1,7 +1,6 @@
 package com.allclearwas.domains.student.api;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -43,18 +42,7 @@ public interface StudentProfileApi {
 					    "errors": []
 					}
 					""")
-			})),
-		@ApiResponse(responseCode = "403", description = "JWT 인증 실패",
-			content = @Content(mediaType = "application/json", examples = {
-				@ExampleObject(name = "인증 실패", value = """
-					{
-					    "code": "4030",
-					    "message": "JWT 인증에 실패하였습니다.",
-					    "errors": []
-					}
-					""")
 			}))
 	})
-	@GetMapping("/api/v1/students/me")
 	ResponseEntity<?> getStudentProfile();
 }
