@@ -6,6 +6,7 @@ import com.allclearwas.common.exception.student.StudentErrorCode;
 import com.allclearwas.common.exception.student.StudentException;
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
+import com.allclearwas.domains.student.dto.response.StudentCreditRes;
 import com.allclearwas.domains.student.dto.response.StudentProfileRes;
 import com.allclearwas.domains.student.implement.StudentPolicyReader;
 import com.allclearwas.domains.student.implement.StudentReader;
@@ -27,5 +28,12 @@ public class StudentService {
 			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
 
 		return StudentProfileRes.from(student, studentPolicy);
+	}
+
+	public StudentCreditRes getStudentPolicyInfo(Long studentId) {
+		StudentPolicy studentPolicy = studentPolicyReader.read(studentId)
+			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
+
+		return StudentCreditRes.from(studentPolicy);
 	}
 }

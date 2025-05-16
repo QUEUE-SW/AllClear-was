@@ -4,28 +4,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.common.security.authentication.SecurityUserDetails;
-import com.allclearwas.domains.student.dto.response.StudentProfileRes;
+import com.allclearwas.domains.student.dto.response.StudentCreditRes;
 import com.allclearwas.domains.student.service.StudentService;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@RestController
+@Getter
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/students")
-public class StudentController {
+@RequestMapping("/api/v1/student_polices")
+public class StudentPolicyController {
 
 	private final StudentService studentService;
 
-	@GetMapping("/me")
-	public ResponseEntity<?> getStudentInfo(
-		@AuthenticationPrincipal SecurityUserDetails userDetails) {
+	@GetMapping("/credits")
+	public ResponseEntity<?> getStudentPolicyInfo(@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
-		StudentProfileRes response = studentService.getStudentInfo(studentId);
+		StudentCreditRes response = studentService.getStudentPolicyInfo(studentId);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }
-
