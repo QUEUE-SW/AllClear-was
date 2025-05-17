@@ -8,5 +8,5 @@ import com.allclearwas.domains.student.domain.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-	Optional<Student> findByIdentifier(int identifier);
+	Optional<Student> findByIdentifier(String identifier);
 }

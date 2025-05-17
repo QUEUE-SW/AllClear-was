@@ -12,7 +12,7 @@ public class StudentValidator {
 
 	private final StudentReader studentReader;
 
-	public void checkDuplicateStudent(int identifier) {
+	public void checkDuplicateStudent(String identifier) {
 		studentReader.readByIdentifier(identifier)
 			.ifPresent(student -> {
 				throw new StudentException(StudentErrorCode.STUDENT_IS_DUPLICATED);

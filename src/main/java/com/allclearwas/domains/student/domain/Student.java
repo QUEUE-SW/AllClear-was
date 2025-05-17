@@ -28,7 +28,7 @@ public class Student {
 	private Long id;
 
 	@Column(nullable = false)
-	private int identifier;
+	private String identifier;
 
 	@Column(nullable = false)
 	private String password;
@@ -53,7 +53,7 @@ public class Student {
 	private StudentPolicy studentPolicy;
 
 	@Builder
-	public Student(int identifier, String password, String name, College college, Department department, Major major,
+	public Student(String identifier, String password, String name, College college, Department department, Major major,
 		int grade) {
 		this.identifier = identifier;
 		this.password = password;
