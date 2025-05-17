@@ -10,7 +10,7 @@ public record StudentProfileRes(
 	@Schema(description = "학생 이름", example = "박지원")
 	String name,
 	@Schema(description = "학번 (고유 ID)", example = "22012077")
-	int studentId,
+	String identifier,
 	@Schema(description = "현재 학기", example = "1학기")
 	Semester semester
 ) {

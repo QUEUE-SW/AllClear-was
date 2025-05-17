@@ -18,7 +18,7 @@ public class StudentReader {
 		return studentRepository.findById(studentId);
 	}
 
-	public Optional<Student> readByIdentifier(int identifier) {
+	public Optional<Student> readByIdentifier(String identifier) {
 		return studentRepository.findByIdentifier(identifier);
 	}
 }

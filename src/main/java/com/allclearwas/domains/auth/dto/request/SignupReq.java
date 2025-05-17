@@ -16,10 +16,10 @@ import jakarta.validation.constraints.Pattern;
 
 public record SignupReq(
 
-	@Min(value = 10000000, message = "학번은 8자리 숫자여야 합니다.")
-	@Max(value = 99999999, message = "학번은 8자리 숫자여야 합니다.")
+	@NotBlank(message = "학번을 입력해주세요.")
+	@Pattern(regexp = "^[0-9]{8}$", message = "학번은 8자리 숫자여야 합니다.")
 	@Schema(description = "학번", example = "22012155")
-	int identifier,
+	String identifier,
 
 	@NotBlank(message = "비밀번호를 입력해주세요.")
 	@Schema(description = "비밀번호", example = "test1234")
