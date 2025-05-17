@@ -29,7 +29,7 @@ public class AuthController implements AuthApi {
 	@PreAuthorize("isAnonymous()")
 	@PostMapping("/sign-up")
 	public ResponseEntity<?> signUp(@Valid @RequestBody SignupReq signupReq) {
-		SignupRes signupRes = authService.signup(signupReq);
+		SignupRes signupRes = authService.signUp(signupReq);
 		return ResponseEntity.ok(SuccessResponse.of(signupRes));
 	}
 
