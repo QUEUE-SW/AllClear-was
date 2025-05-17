@@ -8,6 +8,7 @@ import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.domain.CourseTime;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
 import com.allclearwas.domains.course.implement.CourseReader;
+import com.allclearwas.domains.course.support.CourseTimeFormatter;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,14 +28,8 @@ public class CourseService {
 			.map(course -> {
 				List<CourseTime> times = courseReader.findCourseTimesByCourseId(course.getId());
 
-				String time1 = times.size() > 0
-					? times.get(0).getDayOfWeek() + SPACE
-					+ times.get(0).getStartTime() + TILDE + times.get(0).getEndTime()
-					: "";
-				String time2 = times.size() > 1
-					? times.get(1).getDayOfWeek() + SPACE
-					+ times.get(1).getStartTime() + TILDE + times.get(0).getEndTime()
-					: "";
+				String time1 = CourseTimeFormatter.formatTime(times, 0);
+				String time2 = CourseTimeFormatter.formatTime(times, 1);
 
 				return CourseListRes.of(course, time1, time2);
 			})
