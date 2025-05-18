@@ -4,11 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.allclearwas.common.exception.student.StudentErrorCode;
+import com.allclearwas.common.exception.student.StudentException;
 import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.domain.CourseTime;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
+import com.allclearwas.domains.course.dto.response.MyCourseListRes;
 import com.allclearwas.domains.course.implement.CourseReader;
 import com.allclearwas.domains.course.support.CourseTimeFormatter;
+import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
+import com.allclearwas.domains.student.domain.Student;
+import com.allclearwas.domains.student.implement.StudentReader;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,9 +23,8 @@ import lombok.RequiredArgsConstructor;
 public class CourseService {
 
 	private final CourseReader courseReader;
-
-	private static final String SPACE = " ";
-	private static final String TILDE = "~";
+	private final StudentReader studentReader;
+	private final EnrollmentReader enrollmentReader;
 
 	public List<CourseListRes> getCourseList() {
 		List<Course> courses = courseReader.findAllCourses();
@@ -32,6 +37,23 @@ public class CourseService {
 				String time2 = CourseTimeFormatter.formatTime(times, 1);
 
 				return CourseListRes.of(course, time1, time2);
+			})
+			.toList();
+	}
+
+	public List<MyCourseListRes> getMyCourses(Long studentId) {
+		Student student = studentReader.read(studentId)
+			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_NOT_FOUND));
+
+		return enrollmentReader.findEnrollmentsByStudent(student).stream()
+			.map(enrollment -> {
+				Course course = enrollment.getCourse();
+				List<CourseTime> times = courseReader.findCourseTimesByCourseId(course.getId());
+
+				String time1 = CourseTimeFormatter.formatTime(times, 0);
+				String time2 = CourseTimeFormatter.formatTime(times, 1);
+
+				return MyCourseListRes.of(enrollment.getId(), course, time1, time2);
 			})
 			.toList();
 	}
