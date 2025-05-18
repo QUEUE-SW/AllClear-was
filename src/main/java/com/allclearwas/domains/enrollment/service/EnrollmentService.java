@@ -16,6 +16,6 @@ public class EnrollmentService {
 	private final EnrollmentRepository enrollmentRepository;
 
 	public List<EnrolledCountRes> getEnrolledCount(List<Long> courseIds) {
-		return enrollmentRepository.countByCourseId(courseIds);
+		return enrollmentRepository.countByCourseIds(courseIds);
 	}
 }
