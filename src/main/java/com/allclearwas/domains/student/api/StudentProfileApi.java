@@ -42,6 +42,16 @@ public interface StudentProfileApi {
 					    "errors": []
 					}
 					""")
+			})),
+		@ApiResponse(responseCode = "404", description = "해당 학생 정책이 존재하지 않음",
+			content = @Content(mediaType = "application/json", examples = {
+				@ExampleObject(name = "실패 예시", value = """
+					{
+					    "code": "4040",
+					    "message": "해당 학생 정책이 존재하지 않습니다.",
+					    "errors": []
+					}
+					""")
 			}))
 	})
 	ResponseEntity<?> getStudentProfile();
