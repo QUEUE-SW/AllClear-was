@@ -10,6 +10,11 @@ import com.allclearwas.domains.enrollment.domain.Enrollment;
 
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
 
-	@Query("SELECT e FROM Enrollment e WHERE e.student.id = :studentId")
-	List<Enrollment> findByStudentId(@Param("studentId") Long studentId);
+	@Query("""
+		   	 SELECT DISTINCT e FROM Enrollment e
+		   	 JOIN FETCH e.course c
+		   	 JOIN FETCH c.courseTimes
+		      WHERE e.student.id = :studentId
+		""")
+	List<Enrollment> findWithCourseAndTimesByStudentId(@Param("studentId") Long studentId);
 }

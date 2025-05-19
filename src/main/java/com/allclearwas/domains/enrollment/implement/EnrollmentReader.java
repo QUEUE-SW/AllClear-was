@@ -14,7 +14,7 @@ public class EnrollmentReader {
 
 	private final EnrollmentRepository enrollmentRepository;
 
-	public List<Enrollment> findEnrollmentsByStudentId(Long studentId) {
-		return enrollmentRepository.findByStudentId(studentId);
+	public List<Enrollment> findEnrollmentsWithCourseAndTimes(Long studentId) {
+		return enrollmentRepository.findWithCourseAndTimesByStudentId(studentId);
 	}
 }

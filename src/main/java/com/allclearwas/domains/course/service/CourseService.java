@@ -12,6 +12,7 @@ import com.allclearwas.domains.course.dto.response.CourseListRes;
 import com.allclearwas.domains.course.dto.response.MyCourseListRes;
 import com.allclearwas.domains.course.implement.CourseReader;
 import com.allclearwas.domains.course.support.CourseTimeFormatter;
+import com.allclearwas.domains.enrollment.domain.Enrollment;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
 import com.allclearwas.domains.student.implement.StudentReader;
 
@@ -44,10 +45,12 @@ public class CourseService {
 		studentReader.read(studentId)
 			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_NOT_FOUND));
 
-		return enrollmentReader.findEnrollmentsByStudentId(studentId).stream()
+		List<Enrollment> enrollments = enrollmentReader.findEnrollmentsWithCourseAndTimes(studentId);
+
+		return enrollments.stream()
 			.map(enrollment -> {
 				Course course = enrollment.getCourse();
-				List<CourseTime> times = courseReader.findCourseTimesByCourseId(course.getId());
+				List<CourseTime> times = course.getCourseTimes();
 
 				String time1 = CourseTimeFormatter.formatTime(times, 0);
 				String time2 = CourseTimeFormatter.formatTime(times, 1);
