@@ -1,13 +1,15 @@
 package com.allclearwas.domains.course.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
+import com.allclearwas.common.security.authentication.SecurityUserDetails;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "수강신청 현황 조회 API")
@@ -15,8 +17,7 @@ public interface MyCourseListApi {
 
 	@Operation(
 		summary = "나의 수강 신청 목록 조회",
-		description = "로그인한 학생이 자신이 신청한 강의 목록을 조회한다.",
-		security = {@SecurityRequirement(name = "JWT")}
+		description = "로그인한 학생이 자신이 신청한 강의 목록을 조회한다."
 	)
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "2000", description = "강의 목록 조회 성공",
@@ -54,5 +55,5 @@ public interface MyCourseListApi {
 					""")
 			}))
 	})
-	ResponseEntity<?> getMyCourses();
+	ResponseEntity<?> getMyCourses(@AuthenticationPrincipal SecurityUserDetails userDetails);
 }
