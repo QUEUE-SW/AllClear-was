@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
-import com.allclearwas.domains.enrollment.dto.EnrolledCountRes;
+import com.allclearwas.domains.enrollment.api.EnrollmentApi;
+import com.allclearwas.domains.enrollment.dto.CourseEnrollmentCountDto;
 import com.allclearwas.domains.enrollment.service.EnrollmentService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,13 +18,13 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/enrollments")
-public class EnrollmentController {
+public class EnrollmentController implements EnrollmentApi {
 
 	private final EnrollmentService enrollmentService;
 
 	@GetMapping("/capacities")
 	public ResponseEntity<?> getEnrolledCount(@RequestParam List<Long> ids) {
-		List<EnrolledCountRes> response = enrollmentService.getEnrolledCount(ids);
+		List<CourseEnrollmentCountDto> response = enrollmentService.getEnrolledCount(ids);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }
