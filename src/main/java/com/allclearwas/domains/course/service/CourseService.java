@@ -13,7 +13,6 @@ import com.allclearwas.domains.course.dto.response.MyCourseListRes;
 import com.allclearwas.domains.course.implement.CourseReader;
 import com.allclearwas.domains.course.support.CourseTimeFormatter;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
-import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.implement.StudentReader;
 
 import lombok.RequiredArgsConstructor;
@@ -42,10 +41,10 @@ public class CourseService {
 	}
 
 	public List<MyCourseListRes> getMyCourses(Long studentId) {
-		Student student = studentReader.read(studentId)
+		studentReader.read(studentId)
 			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_NOT_FOUND));
 
-		return enrollmentReader.findEnrollmentsByStudent(student).stream()
+		return enrollmentReader.findEnrollmentsByStudentId(studentId).stream()
 			.map(enrollment -> {
 				Course course = enrollment.getCourse();
 				List<CourseTime> times = courseReader.findCourseTimesByCourseId(course.getId());
