@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.common.security.authentication.SecurityUserDetails;
+import com.allclearwas.domains.student.api.StudentProfileApi;
 import com.allclearwas.domains.student.dto.response.StudentProfileRes;
 import com.allclearwas.domains.student.service.StudentService;
 
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/students")
-public class StudentController {
+public class StudentController implements StudentProfileApi {
 
 	private final StudentService studentService;
 

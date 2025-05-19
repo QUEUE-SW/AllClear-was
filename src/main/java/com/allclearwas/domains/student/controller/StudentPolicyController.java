@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.common.security.authentication.SecurityUserDetails;
+import com.allclearwas.domains.student.api.StudentPolicyApi;
 import com.allclearwas.domains.student.dto.response.StudentCreditRes;
 import com.allclearwas.domains.student.service.StudentService;
 
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/student_polices")
-public class StudentPolicyController {
+public class StudentPolicyController implements StudentPolicyApi {
 
 	private final StudentService studentService;
 
