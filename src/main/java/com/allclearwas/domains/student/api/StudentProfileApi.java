@@ -1,13 +1,15 @@
 package com.allclearwas.domains.student.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
+import com.allclearwas.common.security.authentication.SecurityUserDetails;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "학생 기본정보 조회 API")
@@ -15,8 +17,7 @@ public interface StudentProfileApi {
 
 	@Operation(
 		summary = "학생 기본정보 조회",
-		description = "로그인한 학생의 이름, 학번, 학기를 조회합니다.",
-		security = {@SecurityRequirement(name = "JWT")}
+		description = "로그인한 학생의 이름, 학번, 학기를 조회합니다."
 	)
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "2000", description = "학생 정보 조회 성공",
@@ -42,7 +43,18 @@ public interface StudentProfileApi {
 					    "errors": []
 					}
 					""")
+			})),
+		@ApiResponse(responseCode = "404", description = "해당 학생 정책이 존재하지 않음",
+			content = @Content(mediaType = "application/json", examples = {
+				@ExampleObject(name = "실패 예시", value = """
+					{
+					    "code": "4040",
+					    "message": "해당 학생 정책이 존재하지 않습니다.",
+					    "errors": []
+					}
+					""")
 			}))
 	})
-	ResponseEntity<?> getStudentProfile();
+	public ResponseEntity<?> getStudentInfo(
+		@AuthenticationPrincipal SecurityUserDetails userDetails);
 }
