@@ -1,8 +1,5 @@
 package com.allclearwas.domains.course.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.allclearwas.domains.course.type.Category;
 import com.allclearwas.domains.course.type.Location;
 import com.allclearwas.domains.course.type.Professor;
@@ -17,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,9 +47,6 @@ public class Course {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "courseInfo_id")
 	private CourseInfo courseInfo;
-
-	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-	private List<CourseTime> courseTimes = new ArrayList<>();
 
 	@Builder
 	public Course(String name, Professor professor, Location location, int credit, int capacity, Category category) {

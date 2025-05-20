@@ -24,4 +24,8 @@ public class CourseReader {
 	public List<CourseTime> findCourseTimesByCourseId(Long courseId) {
 		return courseTimeRepository.findByCourseId(courseId);
 	}
+
+	public List<CourseTime> findByCourseId(List<Long> courseId) {
+		return courseTimeRepository.findByCourseIds(courseId);
+	}
 }

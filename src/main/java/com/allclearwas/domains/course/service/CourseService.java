@@ -1,6 +1,8 @@
 package com.allclearwas.domains.course.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -41,10 +43,20 @@ public class CourseService {
 
 		List<Enrollment> enrollments = enrollmentReader.findEnrollmentsWithCourseAndTimes(studentId);
 
+		List<Long> courseIds = enrollments.stream()
+			.map(e -> e.getCourse().getId())
+			.distinct()
+			.toList();
+
+		List<CourseTime> courseTimes = courseReader.findByCourseId(courseIds);
+
+		Map<Long, List<CourseTime>> courseTimeMap = courseTimes.stream()
+			.collect(Collectors.groupingBy(ct -> ct.getCourse().getId()));
+
 		return enrollments.stream()
 			.map(enrollment -> {
 				Course course = enrollment.getCourse();
-				List<CourseTime> times = course.getCourseTimes();
+				List<CourseTime> times = courseTimeMap.getOrDefault(course.getId(), List.of());
 
 				String time1 = CourseTimeFormatter.formatTime(times, 0);
 				String time2 = CourseTimeFormatter.formatTime(times, 1);
