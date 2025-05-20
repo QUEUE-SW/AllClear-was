@@ -1,6 +1,7 @@
 package com.allclearwas.domains.student.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class StudentController implements StudentProfileApi {
 
 	private final StudentService studentService;
 
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/me")
 	public ResponseEntity<?> getStudentInfo(
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
