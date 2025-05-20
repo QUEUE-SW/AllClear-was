@@ -3,6 +3,7 @@ package com.allclearwas.domains.course.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,7 @@ public class CourseController implements CourseListApi, MyCourseListApi {
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/me")
 	public ResponseEntity<?> getMyCourses(@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
