@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.allclearwas.common.exception.student.StudentErrorCode;
-import com.allclearwas.common.exception.student.StudentException;
 import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.domain.CourseTime;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
@@ -14,7 +12,6 @@ import com.allclearwas.domains.course.implement.CourseReader;
 import com.allclearwas.domains.course.support.CourseTimeFormatter;
 import com.allclearwas.domains.enrollment.domain.Enrollment;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
-import com.allclearwas.domains.student.implement.StudentReader;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 public class CourseService {
 
 	private final CourseReader courseReader;
-	private final StudentReader studentReader;
 	private final EnrollmentReader enrollmentReader;
 
 	public List<CourseListRes> getCourseList() {
@@ -42,8 +38,6 @@ public class CourseService {
 	}
 
 	public List<MyCourseListRes> getMyCourses(Long studentId) {
-		studentReader.read(studentId)
-			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_NOT_FOUND));
 
 		List<Enrollment> enrollments = enrollmentReader.findEnrollmentsWithCourseAndTimes(studentId);
 
