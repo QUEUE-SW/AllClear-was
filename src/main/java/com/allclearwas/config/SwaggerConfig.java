@@ -14,7 +14,9 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @OpenAPIDefinition(
 	servers = {
-		@Server(url = "http://localhost:8080", description = "All_Clear local server")
+		@Server(url = "http://3.37.59.137:8080", description = "All Clear Dev server"),
+		@Server(url = "http://3.37.59.137:8081", description = "All Clear Prod server"),
+		@Server(url = "http://localhost:8080", description = "All Clear Local server")
 	}
 )
 @Configuration
