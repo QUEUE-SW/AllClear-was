@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +17,7 @@ public class WebSecurityConfig {
 
 	private final FilterRegisterConfig filterRegisterConfig;
 	private final AuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private final AccessDeniedHandler jwtAccessDeniedHandler;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,6 +34,7 @@ public class WebSecurityConfig {
 			.with(filterRegisterConfig, Customizer.withDefaults())
 			.exceptionHandling(handler -> {
 				handler.authenticationEntryPoint(jwtAuthenticationEntryPoint);
+				handler.accessDeniedHandler(jwtAccessDeniedHandler);
 			});
 		return http.build();
 	}

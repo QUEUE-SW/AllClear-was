@@ -6,7 +6,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
+import com.allclearwas.common.security.handler.JwtAccessDeniedHandler;
 import com.allclearwas.common.security.handler.JwtAuthenticationEntryPoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,5 +30,10 @@ public class SecurityConfig {
 	@Bean
 	public AuthenticationEntryPoint jwtAuthenticationEntryPoint() {
 		return new JwtAuthenticationEntryPoint(objectMapper);
+	}
+
+	@Bean
+	public AccessDeniedHandler jwtAccessDeniedHandler() {
+		return new JwtAccessDeniedHandler(objectMapper);
 	}
 }

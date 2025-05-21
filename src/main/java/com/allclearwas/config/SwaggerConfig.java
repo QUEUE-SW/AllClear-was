@@ -26,7 +26,7 @@ public class SwaggerConfig {
 	public GroupedOpenApi allApi() {
 		return GroupedOpenApi.builder()
 			.group("전체 보기")
-			.packagesToScan("com.allclearwas.domains")
+			.packagesToScan("com.allclearwas")
 			.build();
 	}
 
@@ -59,6 +59,14 @@ public class SwaggerConfig {
 		return GroupedOpenApi.builder()
 			.group("수강신청 전체 API")
 			.packagesToScan("com.allclearwas.domains.enrollment")
+			.build();
+	}
+
+	@Bean
+	public GroupedOpenApi globalErrorGroup() {
+		return GroupedOpenApi.builder()
+			.group("GLOBAL ERROR API")
+			.packagesToScan("com.allclearwas.common.exception")
 			.build();
 	}
 

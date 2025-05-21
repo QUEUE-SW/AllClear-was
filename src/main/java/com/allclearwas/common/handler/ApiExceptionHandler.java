@@ -1,8 +1,5 @@
 package com.allclearwas.common.handler;
 
-import java.nio.file.AccessDeniedException;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -47,18 +44,5 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ResponseEntity<?> handleMissingParams(MissingServletRequestParameterException ex) {
 		return ResponseEntity.badRequest().body(ErrorResponse.of("4002", "필수 요청 파라미터가 없습니다: " + ex.getParameterName()));
-	}
-
-	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<?> handleAccessDenied(AccessDeniedException ex) {
-		return ResponseEntity.status(HttpStatus.FORBIDDEN)
-			.body(ErrorResponse.of("4030", "접근 권한이 없습니다."));
-	}
-
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<?> handleUnknownException(Exception ex) {
-		log.error("Unhandled Exception: ", ex);
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-			.body(ErrorResponse.of("5000", "예기치 못한 오류가 발생했습니다."));
 	}
 }
