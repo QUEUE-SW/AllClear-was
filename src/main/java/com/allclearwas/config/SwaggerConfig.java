@@ -63,6 +63,14 @@ public class SwaggerConfig {
 	}
 
 	@Bean
+	public GroupedOpenApi globalErrorGroup() {
+		return GroupedOpenApi.builder()
+			.group("GLOBAL ERROR API")
+			.packagesToScan("com.allclearwas.common.exception")
+			.build();
+	}
+
+	@Bean
 	public OpenAPI openAPI() {
 
 		SecurityRequirement securityRequirement = new SecurityRequirement().addList("JWT");
