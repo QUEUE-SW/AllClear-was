@@ -44,7 +44,6 @@ jobs:
       # 6️⃣ Docker 이미지 빌드 (allclear-was)
       - name: Build Docker Image
         run: |
-          cd ALLCLEAR-was
           docker build --platform linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/allclear-was-dev:latest -f Dockerfile.dev .
 
       # 7️⃣ Docker 이미지 푸시
