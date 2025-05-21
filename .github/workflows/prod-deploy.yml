@@ -69,3 +69,5 @@ jobs:
 
             echo "🚀 새 컨테이너 실행"
             docker run -d --name allclear-was-prod -p 8081:8081 ${{ secrets.DOCKERHUB_USERNAME }}/allclear-was-prod:latest
+            
+            docker logs -f allclear-was-prod > /home/ubuntu/logs/prod/allclear-prod-$(date +%F).log 2>&1 &
