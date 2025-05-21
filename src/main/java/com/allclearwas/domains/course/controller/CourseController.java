@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.common.security.authentication.SecurityUserDetails;
+import com.allclearwas.domains.course.api.CourseListApi;
+import com.allclearwas.domains.course.api.MyCourseListApi;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
 import com.allclearwas.domains.course.dto.response.MyCourseListRes;
 import com.allclearwas.domains.course.service.CourseService;
@@ -20,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/courses")
-public class CourseController {
+public class CourseController implements CourseListApi, MyCourseListApi {
 
 	private final CourseService courseService;
 
