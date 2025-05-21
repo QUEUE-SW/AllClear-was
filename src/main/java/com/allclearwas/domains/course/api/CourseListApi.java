@@ -20,7 +20,7 @@ public interface CourseListApi {
 		description = "개설된 모든 강의 목록을 조회한다."
 	)
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "200", description = "강의 목록 조회 성공",
+		@ApiResponse(responseCode = "200", description = "강의 목록 조회 성공, 예시는 리스트의 한 항목입니다.",
 			content = @Content(mediaType = "application/json",
 				array = @ArraySchema(schema = @Schema(implementation = CourseListRes.class))))}
 	)

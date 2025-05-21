@@ -20,7 +20,7 @@ public interface MyCourseListApi {
 
 	@Operation(summary = "나의 수강 신청 목록 조회", description = "로그인한 학생이 자신이 신청한 강의 목록을 조회한다.")
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "200", description = "강의 목록 조회 성공",
+		@ApiResponse(responseCode = "200", description = "강의 목록 조회 성공, 예시는 리스트의 한 항목입니다.",
 			content = @Content(mediaType = "application/json",
 				array = @ArraySchema(schema = @Schema(implementation = MyCourseListRes.class)))),
 		@ApiResponse(responseCode = "404", description = "해당 학생이 존재하지 않음",
