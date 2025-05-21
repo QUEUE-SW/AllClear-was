@@ -20,7 +20,7 @@ public interface StudentPolicyApi {
 		description = "로그인한 학생의 현재 수강 중인 총 학점, 최대 신청 가능 학점, 남은 신청 가능 학점을 조회합니다."
 	)
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "2000", description = "학생 학점정보 조회 성공",
+		@ApiResponse(responseCode = "200", description = "학생 학점정보 조회 성공",
 			content = @Content(mediaType = "application/json", examples = {
 				@ExampleObject(name = "성공 예시", value = """
 					{
