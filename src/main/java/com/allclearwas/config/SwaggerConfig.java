@@ -26,7 +26,7 @@ public class SwaggerConfig {
 	public GroupedOpenApi allApi() {
 		return GroupedOpenApi.builder()
 			.group("전체 보기")
-			.packagesToScan("com.allclearwas.domains")
+			.packagesToScan("com.allclearwas")
 			.build();
 	}
 
