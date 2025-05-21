@@ -26,5 +26,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      - name: Run Tests
-        run: ./gradlew test
+      - name: Create application-test.yml for test
+        run: |
+          cd src/main/resources
+          touch ./application-test.yml
+          echo "${{ secrets.ALL_CLEAR_TEST }}" >> ./application-test.yml
+        shell: bash
