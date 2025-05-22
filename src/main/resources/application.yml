@@ -17,6 +17,10 @@ jwt:
       expire-time: ${JWT_ACCESS_EXPIRE_TIME:7200000}
       secret-key: ${JWT_ACCESS_SECRET_KEY:thisisexamplesecretkeyforaccesstokenthisisexamplesecretkeyforaccesstokenthisisexamplesecretkey}
 
+springdoc:
+  swagger-ui:
+    persistAuthorization: true
+
 ---
 spring:
   config:
