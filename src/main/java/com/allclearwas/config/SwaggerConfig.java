@@ -14,8 +14,8 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @OpenAPIDefinition(
 	servers = {
-		@Server(url = "http://3.37.59.137:8080", description = "All Clear Dev server"),
-		@Server(url = "http://3.37.59.137:8081", description = "All Clear Prod server"),
+		@Server(url = "https://www.queue.it.kr/dev", description = "All Clear Dev server"),
+		@Server(url = "https://www.queue.it.kr/prod", description = "All Clear Prod server"),
 		@Server(url = "http://localhost:8080", description = "All Clear Local server")
 	}
 )
