@@ -17,7 +17,7 @@ public interface CourseListApi {
 		description = "개설된 모든 강의 목록을 조회한다."
 	)
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "2000", description = "강의 목록 조회 성공",
+		@ApiResponse(responseCode = "200", description = "강의 목록 조회 성공",
 			content = @Content(mediaType = "application/json", examples = {
 				@ExampleObject(name = "성공 예시", value = """
 					{
@@ -35,11 +35,19 @@ public interface CourseListApi {
 					           "time1": "월 10:00~11:30",
 					           "time2": "수 12:00~13:30"
 					         },
-					         ...
+					         {
+					           "courseId": 1,
+					           "courseCode": "cs101",
+					           "name": "컴퓨터프로그래밍",
+					           "professor": "박대영",
+					           "location": "IT관 117",
+					           "capacity": "20",
+					           "credit": 3,
+					           "time1": "월 10:00~11:30",
+					           "time2": "수 12:00~13:30"
+					         } 
 					       ]
-					}
-					""")
-			}))
+					}""")}))
 	})
 	ResponseEntity<?> getCourseList();
 }

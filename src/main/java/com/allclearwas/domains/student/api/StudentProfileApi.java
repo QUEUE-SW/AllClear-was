@@ -20,7 +20,7 @@ public interface StudentProfileApi {
 		description = "로그인한 학생의 이름, 학번, 학기를 조회합니다."
 	)
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "2000", description = "학생 정보 조회 성공",
+		@ApiResponse(responseCode = "200", description = "학생 정보 조회 성공",
 			content = @Content(mediaType = "application/json", examples = {
 				@ExampleObject(name = "성공 예시", value = """
 					{
@@ -34,7 +34,7 @@ public interface StudentProfileApi {
 					}
 					""")
 			})),
-		@ApiResponse(responseCode = "404", description = "해당 학생이 존재하지 않음",
+		@ApiResponse(responseCode = "404 - 리소스(학생) 없음", description = "해당 학생이 존재하지 않음",
 			content = @Content(mediaType = "application/json", examples = {
 				@ExampleObject(name = "실패 예시", value = """
 					{
@@ -44,7 +44,7 @@ public interface StudentProfileApi {
 					}
 					""")
 			})),
-		@ApiResponse(responseCode = "404", description = "해당 학생 정책이 존재하지 않음",
+		@ApiResponse(responseCode = "404 - 리소스(정책) 없음", description = "해당 학생 정책이 존재하지 않음",
 			content = @Content(mediaType = "application/json", examples = {
 				@ExampleObject(name = "실패 예시", value = """
 					{
