@@ -5,12 +5,9 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.allclearwas.domains.enrollment.dto.CourseEnrollmentCountDto;
-
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,13 +20,19 @@ public interface EnrollmentApi {
 		description = "개설된 강의 목록의 현재 찬 자리 수 모두 조회합니다."
 	)
 	@ApiResponses(value = {
-		@ApiResponse(
-			responseCode = "2000",
-			description = "강의 남은 자리수 조회 성공, 예시는 리스트의 한 항목입니다.",
-			content = @Content(
-				mediaType = "application/json",
-				array = @ArraySchema(schema = @Schema(implementation = CourseEnrollmentCountDto.class))
-			))
+		@ApiResponse(responseCode = "200", description = "강의 남은 자리수 조회 성공",
+			content = @Content(mediaType = "application/json", examples = {
+				@ExampleObject(name = "성공 예시", value = """
+					{
+					    "code": "2000",
+					    "message": "요청에 성공하였습니다.",
+					    "data": [
+					      { "courseId": 1, "current": 21},
+					      { "courseId": 2, "current": 15}
+					    ]
+					}""")
+			}))
 	})
 	ResponseEntity<?> getEnrolledCount(@RequestParam List<Long> ids);
 }
+
