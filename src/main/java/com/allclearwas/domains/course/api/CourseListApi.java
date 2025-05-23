@@ -3,7 +3,7 @@ package com.allclearwas.domains.course.api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.allclearwas.domains.course.dto.request.CourseFilterRequest;
+import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -52,5 +52,5 @@ public interface CourseListApi {
 					       ]
 					}""")}))
 	})
-	ResponseEntity<?> getfilterCourses(@ModelAttribute CourseFilterRequest request);
+	ResponseEntity<?> getfilterCourses(@ModelAttribute CourseFilterReq request);
 }

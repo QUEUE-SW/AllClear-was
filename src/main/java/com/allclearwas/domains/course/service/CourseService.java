@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.domain.CourseTime;
-import com.allclearwas.domains.course.dto.request.CourseFilterRequest;
+import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
 import com.allclearwas.domains.course.dto.response.MyCourseListRes;
 import com.allclearwas.domains.course.implement.CourseReader;
@@ -25,7 +25,7 @@ public class CourseService {
 	private final CourseReader courseReader;
 	private final EnrollmentReader enrollmentReader;
 
-	public List<CourseListRes> getfilterCourses(CourseFilterRequest request) {
+	public List<CourseListRes> getfilterCourses(CourseFilterReq request) {
 		return courseReader.findFilteredCourses(request).stream()
 			.map(CourseListRes::of)
 			.toList();

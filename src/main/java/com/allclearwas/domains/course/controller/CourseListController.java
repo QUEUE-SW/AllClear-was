@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.domains.course.api.CourseListApi;
-import com.allclearwas.domains.course.dto.request.CourseFilterRequest;
+import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
 import com.allclearwas.domains.course.service.CourseService;
 
@@ -26,7 +26,7 @@ public class CourseListController implements CourseListApi {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/filters")
-	public ResponseEntity<?> getfilterCourses(@ModelAttribute CourseFilterRequest request) {
+	public ResponseEntity<?> getfilterCourses(@ModelAttribute CourseFilterReq request) {
 		List<CourseListRes> response = courseService.getfilterCourses(request);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}

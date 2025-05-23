@@ -8,7 +8,7 @@ import com.allclearwas.domains.course.dao.CourseListDao;
 import com.allclearwas.domains.course.domain.QCourse;
 import com.allclearwas.domains.course.domain.QCourseInfo;
 import com.allclearwas.domains.course.domain.QCourseTime;
-import com.allclearwas.domains.course.dto.request.CourseFilterRequest;
+import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 import com.allclearwas.domains.course.repository.QueryDslCourseRepository;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Projections;
@@ -30,7 +30,7 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 	private final QCourseInfo courseInfo = QCourseInfo.courseInfo;
 
 	@Override
-	public List<CourseListDao> findFilteredCourses(CourseFilterRequest request) {
+	public List<CourseListDao> findFilteredCourses(CourseFilterReq request) {
 
 		QCourseTime time1 = new QCourseTime("time1");
 		QCourseTime time2 = new QCourseTime("time2");
