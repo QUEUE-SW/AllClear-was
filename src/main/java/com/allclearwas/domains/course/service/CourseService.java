@@ -26,17 +26,8 @@ public class CourseService {
 	private final EnrollmentReader enrollmentReader;
 
 	public List<CourseListRes> getfilterCourses(CourseFilterRequest request) {
-		List<Course> courses = courseReader.findAllCourses(request);
-
-		return courses.stream()
-			.map(course -> {
-				List<CourseTime> times = courseReader.findCourseTimesByCourseId(course.getId());
-
-				String time1 = CourseTimeFormatter.formatTime(times, 0);
-				String time2 = CourseTimeFormatter.formatTime(times, 1);
-
-				return CourseListRes.of(course, time1, time2);
-			})
+		return courseReader.findFilteredCourses(request).stream()
+			.map(CourseListRes::of)
 			.toList();
 	}
 
