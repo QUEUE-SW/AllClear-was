@@ -67,10 +67,20 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 	private Expression<String> selectTimeString(QCourseTime time, QCourse course, int offset) {
 		return JPAExpressions.select(
 				Expressions.stringTemplate(
-					"concat({0}, ' ', {1}, '~', {2})",
-					time.dayOfWeek.stringValue(),
-					time.startTime.stringValue(),
-					time.endTime.stringValue()
+					"concat( "
+						+ "CASE {0} "
+						+ "WHEN 'MONDAY' THEN '월' "
+						+ "WHEN 'TUESDAY' THEN '화' "
+						+ "WHEN 'WEDNESDAY' THEN '수' "
+						+ "WHEN 'THURSDAY' THEN '목' "
+						+ "WHEN 'FRIDAY' THEN '금' "
+						+ "WHEN 'SATURDAY' THEN '토' "
+						+ "WHEN 'SUNDAY' THEN '일' "
+						+ "ELSE {0} END, "
+						+ "' ', "
+						+ "date_format({1}, '%H:%i'), '~', date_format({2}, '%H:%i')"
+						+ ")",
+					time.dayOfWeek.stringValue(), time.startTime, time.endTime
 				)
 			)
 			.from(time)
