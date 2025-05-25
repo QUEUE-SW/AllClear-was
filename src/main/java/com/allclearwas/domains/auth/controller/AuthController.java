@@ -14,6 +14,8 @@ import com.allclearwas.domains.auth.dto.request.SignupReq;
 import com.allclearwas.domains.auth.dto.response.SignInRes;
 import com.allclearwas.domains.auth.dto.response.SignupRes;
 import com.allclearwas.domains.auth.service.AuthService;
+import com.allclearwas.domains.student.domain.Student;
+import com.allclearwas.domains.student.service.StudentService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

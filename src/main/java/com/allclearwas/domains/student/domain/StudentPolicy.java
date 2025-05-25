@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -37,4 +38,28 @@ public class StudentPolicy {
 	@OneToOne
 	@JoinColumn(name = "student_id")
 	private Student student;
+
+	@Builder
+	public StudentPolicy(int maxCredits, int minCredits, int currentCredits, int generalEducationCredits,
+		int majorCredits, Semester semester, Student student) {
+		this.maxCredits = maxCredits;
+		this.minCredits = minCredits;
+		this.currentCredits = currentCredits;
+		this.generalEducationCredits = generalEducationCredits;
+		this.majorCredits = majorCredits;
+		this.semester = semester;
+		this.student = student;
+	}
+
+	public static StudentPolicy of(Student student) {
+		return StudentPolicy.builder()
+			.maxCredits(18)
+			.minCredits(15)
+			.currentCredits(0)
+			.generalEducationCredits(0)
+			.majorCredits(0)
+			.semester(Semester.FIRST)
+			.student(student)
+			.build();
+	}
 }

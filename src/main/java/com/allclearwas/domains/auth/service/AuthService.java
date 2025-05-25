@@ -2,6 +2,7 @@ package com.allclearwas.domains.auth.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.allclearwas.common.exception.auth.AuthErrorCode;
 import com.allclearwas.common.exception.auth.AuthException;
@@ -13,7 +14,9 @@ import com.allclearwas.domains.auth.dto.response.SignInRes;
 import com.allclearwas.domains.auth.dto.response.SignupRes;
 import com.allclearwas.domains.auth.implement.TokenGenerator;
 import com.allclearwas.domains.student.domain.Student;
+import com.allclearwas.domains.student.domain.StudentPolicy;
 import com.allclearwas.domains.student.implement.StudentAppender;
+import com.allclearwas.domains.student.implement.StudentPolicyAppender;
 import com.allclearwas.domains.student.implement.StudentReader;
 import com.allclearwas.domains.student.implement.StudentValidator;
 
@@ -22,12 +25,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 	private final PasswordEncoder passwordEncoder;
 	private final StudentAppender studentAppender;
 	private final StudentReader studentReader;
 	private final StudentValidator studentValidator;
+	private final StudentPolicyAppender studentPolicyAppender;
 	private final TokenGenerator tokenGenerator;
 
 	public SignupRes signUp(SignupReq signupReq) {
@@ -35,6 +40,9 @@ public class AuthService {
 
 		Student student = signupReq.toEntity(passwordEncoder);
 		studentAppender.append(student);
+
+		StudentPolicy studentPolicy = StudentPolicy.of(student);
+		studentPolicyAppender.append(studentPolicy);
 
 		return SignupRes.from(student.getId());
 	}
