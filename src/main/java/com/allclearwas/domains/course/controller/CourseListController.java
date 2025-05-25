@@ -15,6 +15,7 @@ import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 import com.allclearwas.domains.course.dto.response.CourseListRes;
 import com.allclearwas.domains.course.service.CourseService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,7 +27,7 @@ public class CourseListController implements CourseListApi {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/filters")
-	public ResponseEntity<?> getfilterCourses(@ModelAttribute CourseFilterReq request) {
+	public ResponseEntity<?> getfilterCourses(@Valid @ModelAttribute CourseFilterReq request) {
 		List<CourseListRes> response = courseService.getfilterCourses(request);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
