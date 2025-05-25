@@ -26,16 +26,12 @@ import lombok.RequiredArgsConstructor;
 public class AuthController implements AuthApi {
 
 	private final AuthService authService;
-	private final StudentService studentService;
 
 	@Override
 	@PreAuthorize("isAnonymous()")
 	@PostMapping("/sign-up")
 	public ResponseEntity<?> signUp(@Valid @RequestBody SignupReq signupReq) {
-		Student student = authService.signUp(signupReq);
-		studentService.initStudentPolicy(student);
-
-		SignupRes signupRes = SignupRes.from(student.getId());
+		SignupRes signupRes = authService.signUp(signupReq);
 		return ResponseEntity.ok(SuccessResponse.of(signupRes));
 	}
 

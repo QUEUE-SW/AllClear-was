@@ -14,7 +14,9 @@ import com.allclearwas.domains.auth.dto.response.SignInRes;
 import com.allclearwas.domains.auth.dto.response.SignupRes;
 import com.allclearwas.domains.auth.implement.TokenGenerator;
 import com.allclearwas.domains.student.domain.Student;
+import com.allclearwas.domains.student.domain.StudentPolicy;
 import com.allclearwas.domains.student.implement.StudentAppender;
+import com.allclearwas.domains.student.implement.StudentPolicyAppender;
 import com.allclearwas.domains.student.implement.StudentReader;
 import com.allclearwas.domains.student.implement.StudentValidator;
 
@@ -30,15 +32,19 @@ public class AuthService {
 	private final StudentAppender studentAppender;
 	private final StudentReader studentReader;
 	private final StudentValidator studentValidator;
+	private final StudentPolicyAppender studentPolicyAppender;
 	private final TokenGenerator tokenGenerator;
 
-	public Student signUp(SignupReq signupReq) {
+	public SignupRes signUp(SignupReq signupReq) {
 		studentValidator.checkDuplicateStudent(signupReq.identifier());
 
 		Student student = signupReq.toEntity(passwordEncoder);
 		studentAppender.append(student);
 
-		return student;
+		StudentPolicy studentPolicy = StudentPolicy.of(student);
+		studentPolicyAppender.append(studentPolicy);
+
+		return SignupRes.from(student.getId());
 	}
 
 	public SignInRes signIn(SignInReq signInReq) {
