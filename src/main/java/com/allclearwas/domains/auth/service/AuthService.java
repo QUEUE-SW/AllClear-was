@@ -2,6 +2,7 @@ package com.allclearwas.domains.auth.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.allclearwas.common.exception.auth.AuthErrorCode;
 import com.allclearwas.common.exception.auth.AuthException;
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 	private final PasswordEncoder passwordEncoder;
