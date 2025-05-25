@@ -14,6 +14,8 @@ import com.allclearwas.domains.auth.dto.request.SignupReq;
 import com.allclearwas.domains.auth.dto.response.SignInRes;
 import com.allclearwas.domains.auth.dto.response.SignupRes;
 import com.allclearwas.domains.auth.service.AuthService;
+import com.allclearwas.domains.student.domain.Student;
+import com.allclearwas.domains.student.service.StudentService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +26,16 @@ import lombok.RequiredArgsConstructor;
 public class AuthController implements AuthApi {
 
 	private final AuthService authService;
+	private final StudentService studentService;
 
 	@Override
 	@PreAuthorize("isAnonymous()")
 	@PostMapping("/sign-up")
 	public ResponseEntity<?> signUp(@Valid @RequestBody SignupReq signupReq) {
-		SignupRes signupRes = authService.signUp(signupReq);
+		Student student = authService.signUp(signupReq);
+		studentService.initStudentPolicy(student);
+
+		SignupRes signupRes = SignupRes.from(student.getId());
 		return ResponseEntity.ok(SuccessResponse.of(signupRes));
 	}
 
