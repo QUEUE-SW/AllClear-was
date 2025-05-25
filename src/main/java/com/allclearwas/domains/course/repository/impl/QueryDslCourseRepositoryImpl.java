@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.allclearwas.domains.course.dao.CourseListDao;
+import com.allclearwas.domains.course.dao.MyCourseListDao;
 import com.allclearwas.domains.course.domain.QCourse;
 import com.allclearwas.domains.course.domain.QCourseInfo;
 import com.allclearwas.domains.course.domain.QCourseTime;
 import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 import com.allclearwas.domains.course.repository.QueryDslCourseRepository;
+import com.allclearwas.domains.enrollment.domain.QEnrollment;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -28,12 +30,12 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 	private final JPAQueryFactory queryFactory;
 	private final QCourse course = QCourse.course;
 	private final QCourseInfo courseInfo = QCourseInfo.courseInfo;
+	private final QEnrollment enrollment = QEnrollment.enrollment;
+	private final QCourseTime time1 = new QCourseTime("time1");
+	private final QCourseTime time2 = new QCourseTime("time2");
 
 	@Override
 	public List<CourseListDao> findFilteredCourses(CourseFilterReq request) {
-
-		QCourseTime time1 = new QCourseTime("time1");
-		QCourseTime time2 = new QCourseTime("time2");
 
 		return queryFactory
 			.select(Projections.constructor(CourseListDao.class,
@@ -53,6 +55,27 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 				equalsIfNotNull(courseInfo.grade, request.grade()),
 				equalsIfNotNull(courseInfo.department, request.department()),
 				equalsIfNotBlank(course.courseCode, request.code()))
+			.fetch();
+	}
+
+	@Override
+	public List<MyCourseListDao> findMyCourses(Long studentId) {
+		return queryFactory
+			.select(Projections.constructor(MyCourseListDao.class,
+				enrollment.id,
+				course.id,
+				course.courseCode,
+				course.name,
+				course.professor,
+				course.location,
+				course.capacity,
+				course.credit,
+				selectTimeString(time1, course, 0),
+				selectTimeString(time2, course, 1)
+			))
+			.from(enrollment)
+			.join(enrollment.course, course)
+			.where(enrollment.student.id.eq(studentId))
 			.fetch();
 	}
 
