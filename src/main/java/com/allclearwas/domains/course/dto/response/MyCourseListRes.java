@@ -1,6 +1,6 @@
 package com.allclearwas.domains.course.dto.response;
 
-import com.allclearwas.domains.course.domain.Course;
+import com.allclearwas.domains.course.dao.MyCourseListDao;
 import com.allclearwas.domains.course.type.Location;
 import com.allclearwas.domains.course.type.Professor;
 
@@ -16,18 +16,18 @@ public record MyCourseListRes(
 	String time1,
 	String time2
 ) {
-	public static MyCourseListRes of(Long enrollmentId, Course course, String time1, String time2) {
+	public static MyCourseListRes of(MyCourseListDao dao) {
 		return new MyCourseListRes(
-			enrollmentId,
-			course.getId(),
-			course.getCourseCode(),
-			course.getName(),
-			course.getProfessor(),
-			course.getLocation(),
-			course.getCapacity(),
-			course.getCredit(),
-			time1,
-			time2
+			dao.enrollmentId(),
+			dao.courseId(),
+			dao.courseCode(),
+			dao.name(),
+			dao.professor(),
+			dao.location(),
+			dao.capacity(),
+			dao.credit(),
+			dao.time1(),
+			dao.time2()
 		);
 	}
 }
