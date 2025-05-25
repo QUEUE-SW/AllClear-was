@@ -30,13 +30,13 @@ public class AuthService {
 	private final StudentValidator studentValidator;
 	private final TokenGenerator tokenGenerator;
 
-	public SignupRes signUp(SignupReq signupReq) {
+	public Student signUp(SignupReq signupReq) {
 		studentValidator.checkDuplicateStudent(signupReq.identifier());
 
 		Student student = signupReq.toEntity(passwordEncoder);
 		studentAppender.append(student);
 
-		return SignupRes.from(student.getId());
+		return student;
 	}
 
 	public SignInRes signIn(SignInReq signInReq) {
