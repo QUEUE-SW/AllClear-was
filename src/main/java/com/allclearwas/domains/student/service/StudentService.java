@@ -8,6 +8,7 @@ import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
 import com.allclearwas.domains.student.dto.response.StudentCreditRes;
 import com.allclearwas.domains.student.dto.response.StudentProfileRes;
+import com.allclearwas.domains.student.implement.StudentPolicyAppender;
 import com.allclearwas.domains.student.implement.StudentPolicyReader;
 import com.allclearwas.domains.student.implement.StudentReader;
 
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class StudentService {
 
 	private final StudentReader studentReader;
+	private final StudentPolicyAppender studentPolicyAppender;
 	private final StudentPolicyReader studentPolicyReader;
 
 	public StudentProfileRes getStudentInfo(Long studentId) {
@@ -35,5 +37,10 @@ public class StudentService {
 			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
 
 		return StudentCreditRes.from(studentPolicy);
+	}
+
+	public void initStudentPolicy(Student student) {
+		StudentPolicy studentPolicy = StudentPolicy.of(student);
+		studentPolicyAppender.append(studentPolicy);
 	}
 }
