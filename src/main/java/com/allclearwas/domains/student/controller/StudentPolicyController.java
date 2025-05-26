@@ -30,9 +30,8 @@ public class StudentPolicyController implements StudentPolicyApi {
 	@GetMapping("/credits")
 	public ResponseEntity<?> getStudentPolicyInfo(@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
-		log.debug("Requested studentId: {}", studentId);
 		StudentCreditRes response = studentService.getStudentPolicyInfo(studentId);
-		log.debug("StudentPolicy returned successfully");
+		log.debug("StudentCreditRes: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }

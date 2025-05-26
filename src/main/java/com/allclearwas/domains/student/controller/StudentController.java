@@ -29,9 +29,8 @@ public class StudentController implements StudentProfileApi {
 	public ResponseEntity<?> getStudentInfo(
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
-		log.debug("Requested studentId: {}", studentId);
 		StudentProfileRes response = studentService.getStudentInfo(studentId);
-		log.debug("StudentProfile returned successfully");
+		log.debug("StudentProfileRes: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }

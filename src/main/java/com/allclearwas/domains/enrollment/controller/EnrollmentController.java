@@ -28,9 +28,9 @@ public class EnrollmentController implements EnrollmentApi {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/capacities")
 	public ResponseEntity<?> getEnrolledCount(@RequestParam List<Long> ids) {
-		log.debug("Requested courseId count: {}", ids.size());
+		log.debug("Requested courseIds: {}", ids);
 		List<CourseEnrollmentCountDto> response = enrollmentService.getEnrolledCount(ids);
-		log.debug("Returned course count: {}", response.size());
+		log.debug("CourseEnrollmentCount List: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }

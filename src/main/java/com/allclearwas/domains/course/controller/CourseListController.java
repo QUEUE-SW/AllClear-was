@@ -32,7 +32,7 @@ public class CourseListController implements CourseListApi {
 	public ResponseEntity<?> getfilterCourses(@Valid @ModelAttribute CourseFilterReq request) {
 		log.debug("CourseFilterReq: {}", request);
 		List<CourseListRes> response = courseService.getfilterCourses(request);
-		log.debug("CourseList count: {}", response.size());
+		log.debug("CourseFilterRes: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }
