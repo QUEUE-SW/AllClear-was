@@ -91,19 +91,9 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 		return JPAExpressions.select(
 				Expressions.stringTemplate(
 					"concat( "
-						+ "CASE {0} "
-						+ "WHEN 'MONDAY' THEN '월' "
-						+ "WHEN 'TUESDAY' THEN '화' "
-						+ "WHEN 'WEDNESDAY' THEN '수' "
-						+ "WHEN 'THURSDAY' THEN '목' "
-						+ "WHEN 'FRIDAY' THEN '금' "
-						+ "WHEN 'SATURDAY' THEN '토' "
-						+ "WHEN 'SUNDAY' THEN '일' "
-						+ "ELSE {0} END, "
-						+ "' ', "
-						+ "date_format({1}, '%H:%i'), '~', date_format({2}, '%H:%i')"
+						+ "{0}, ' ', date_format({1}, '%H:%i'), '~', date_format({2}, '%H:%i')"
 						+ ")",
-					time.dayOfWeek.stringValue(), time.startTime, time.endTime
+					dayOfWeekToKorean(time.dayOfWeek.stringValue()), time.startTime, time.endTime
 				)
 			)
 			.from(time)
@@ -111,5 +101,20 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 			.orderBy(time.id.asc())
 			.offset(offset)
 			.limit(1);
+	}
+
+	private Expression<String> dayOfWeekToKorean(SimpleExpression<String> dayOfWeek) {
+		return Expressions.stringTemplate(
+			"CASE {0} "
+				+ "WHEN 'MONDAY' THEN '월' "
+				+ "WHEN 'TUESDAY' THEN '화' "
+				+ "WHEN 'WEDNESDAY' THEN '수' "
+				+ "WHEN 'THURSDAY' THEN '목' "
+				+ "WHEN 'FRIDAY' THEN '금' "
+				+ "WHEN 'SATURDAY' THEN '토' "
+				+ "WHEN 'SUNDAY' THEN '일' "
+				+ "ELSE {0} END",
+			dayOfWeek
+		);
 	}
 }
