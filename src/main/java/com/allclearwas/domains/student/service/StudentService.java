@@ -15,8 +15,8 @@ import com.allclearwas.domains.student.implement.StudentReader;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class StudentService {
 
 	private final StudentReader studentReader;
