@@ -15,7 +15,9 @@ import com.allclearwas.domains.student.service.StudentService;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 @RequiredArgsConstructor
 @RestController
@@ -28,7 +30,9 @@ public class StudentPolicyController implements StudentPolicyApi {
 	@GetMapping("/credits")
 	public ResponseEntity<?> getStudentPolicyInfo(@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
+		log.debug("Requested studentId: {}", studentId);
 		StudentCreditRes response = studentService.getStudentPolicyInfo(studentId);
+		log.debug("StudentPolicy returned successfully");
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }
