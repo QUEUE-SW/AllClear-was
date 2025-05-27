@@ -32,7 +32,7 @@ spring:
       on-profile: local
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 logging:
   level:
