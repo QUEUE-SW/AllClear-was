@@ -8,6 +8,10 @@ spring:
     username: ${DATABASE_USERNAME:default}
     password: ${DATABASE_PASSWORD:default}
 
+  sql:
+    init:
+      mode: never
+
   profiles:
     active: local
 
@@ -43,7 +47,7 @@ spring:
       on-profile: dev
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 logging:
   level:
