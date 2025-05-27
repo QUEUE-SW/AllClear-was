@@ -1,15 +1,13 @@
 package com.allclearwas.domains.course.dto.response;
 
 import com.allclearwas.domains.course.dao.CourseListDao;
-import com.allclearwas.domains.course.type.Location;
-import com.allclearwas.domains.course.type.Professor;
 
 public record CourseListRes(
 	Long courseId,
 	String courseCode,
 	String name,
-	Professor professor,
-	Location location,
+	String professor,
+	String location,
 	int capacity,
 	int credit,
 	String time1,
@@ -20,8 +18,8 @@ public record CourseListRes(
 			dao.getCourseId(),
 			dao.getCourseCode(),
 			dao.getName(),
-			dao.getProfessor(),
-			dao.getLocation(),
+			dao.getProfessor().getName(),
+			dao.getLocation().getName(),
 			dao.getCapacity(),
 			dao.getCredit(),
 			dao.getTime1(),

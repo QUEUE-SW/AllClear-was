@@ -18,4 +18,8 @@ public enum Location {
 	IT118("IT관 118호");
 
 	private final String name;
+
+	public String getName() {
+		return name;
+	}
 }
