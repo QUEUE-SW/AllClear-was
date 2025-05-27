@@ -16,7 +16,9 @@ import com.allclearwas.domains.course.dto.response.MyCourseListRes;
 import com.allclearwas.domains.course.service.CourseService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/courses")
@@ -29,6 +31,7 @@ public class MyCourseListController implements MyCourseListApi {
 	public ResponseEntity<?> getMyCourses(@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
 		List<MyCourseListRes> response = courseService.getMyCourses(studentId);
+		log.debug("MyCourseListRes: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }

@@ -15,7 +15,9 @@ import com.allclearwas.domains.enrollment.dto.CourseEnrollmentCountDto;
 import com.allclearwas.domains.enrollment.service.EnrollmentService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/enrollments")
@@ -26,7 +28,9 @@ public class EnrollmentController implements EnrollmentApi {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/capacities")
 	public ResponseEntity<?> getEnrolledCount(@RequestParam List<Long> ids) {
+		log.debug("Requested courseIds: {}", ids);
 		List<CourseEnrollmentCountDto> response = enrollmentService.getEnrolledCount(ids);
+		log.debug("CourseEnrollmentCount List: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }

@@ -17,7 +17,9 @@ import com.allclearwas.domains.course.service.CourseService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/courses")
@@ -28,7 +30,9 @@ public class CourseListController implements CourseListApi {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/filters")
 	public ResponseEntity<?> getfilterCourses(@Valid @ModelAttribute CourseFilterReq request) {
+		log.debug("CourseFilterReq: {}", request);
 		List<CourseListRes> response = courseService.getfilterCourses(request);
+		log.debug("CourseFilterRes: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }

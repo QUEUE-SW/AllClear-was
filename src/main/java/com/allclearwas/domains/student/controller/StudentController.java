@@ -14,7 +14,9 @@ import com.allclearwas.domains.student.dto.response.StudentProfileRes;
 import com.allclearwas.domains.student.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/students")
@@ -28,6 +30,7 @@ public class StudentController implements StudentProfileApi {
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
 		Long studentId = userDetails.getStudentId();
 		StudentProfileRes response = studentService.getStudentInfo(studentId);
+		log.debug("StudentProfileRes: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
 }
