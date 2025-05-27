@@ -16,8 +16,4 @@ public enum Professor {
 	SEJONG_LEE("이세종");
 
 	private final String name;
-
-	public String getName() {
-		return name;
-	}
 }
