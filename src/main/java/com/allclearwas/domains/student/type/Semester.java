@@ -12,4 +12,8 @@ public enum Semester {
 	WINTER("겨울학기");
 
 	private final String name;
+
+	public String getName() {
+		return name;
+	}
 }
