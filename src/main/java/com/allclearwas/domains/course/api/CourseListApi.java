@@ -29,21 +29,21 @@ public interface CourseListApi {
 					       "data": [
 					         {
 					           "courseId": 1,
-					           "courseCode": "cs101",
+					           "courseCode": "E21_115",
 					           "name": "컴퓨터프로그래밍",
 					           "professor": "박대영",
-					           "location": "IT관 117",
+					           "location": "E21_114호",
 					           "capacity": "20",
 					           "credit": 3,
 					           "time1": "월 10:00~11:30",
 					           "time2": "수 12:00~13:30"
 					         },
 					         {
-					           "courseId": 1,
-					           "courseCode": "cs101",
+					           "courseId": 2,
+					           "courseCode": "E21_323",
 					           "name": "컴퓨터프로그래밍",
 					           "professor": "박대영",
-					           "location": "IT관 117",
+					           "location": "E21_115호",
 					           "capacity": "20",
 					           "credit": 3,
 					           "time1": "월 10:00~11:30",
