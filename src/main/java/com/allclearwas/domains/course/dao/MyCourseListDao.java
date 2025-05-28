@@ -3,16 +3,20 @@ package com.allclearwas.domains.course.dao;
 import com.allclearwas.domains.course.type.Location;
 import com.allclearwas.domains.course.type.Professor;
 
-public record MyCourseListDao(
-	Long enrollmentId,
-	Long courseId,
-	String courseCode,
-	String name,
-	Professor professor,
-	Location location,
-	int capacity,
-	int credit,
-	String time1,
-	String time2
-) {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class MyCourseListDao {
+	private Long enrollmentId;
+	private Long courseId;
+	private String courseCode;
+	private String name;
+	private Professor professor;
+	private Location location;
+	private int capacity;
+	private int credit;
+	private String time1;
+	private String time2;
 }
