@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.allclearwas.common.response.SuccessResponse;
 import com.allclearwas.domains.enrollment.api.EnrollmentCapacityApi;
+import com.allclearwas.domains.enrollment.dto.request.CourseEnrollmentCountReq;
 import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 import com.allclearwas.domains.enrollment.service.EnrollmentService;
 
@@ -26,10 +27,10 @@ public class EnrollmentCapacityController implements EnrollmentCapacityApi {
 	private final EnrollmentService enrollmentService;
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/capacities")
-	public ResponseEntity<?> getEnrolledCount(@RequestParam List<Long> ids) {
-		log.debug("Requested courseIds: {}", ids);
-		List<CourseEnrollmentCountRes> response = enrollmentService.getEnrolledCount(ids);
+	@PostMapping("/capacities")
+	public ResponseEntity<?> getEnrolledCount(@RequestBody CourseEnrollmentCountReq req) {
+		log.debug("Requested courseIds: {}", req.ids());
+		List<CourseEnrollmentCountRes> response = enrollmentService.getEnrolledCount(req.ids());
 		log.debug("CourseEnrollmentCount List: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}

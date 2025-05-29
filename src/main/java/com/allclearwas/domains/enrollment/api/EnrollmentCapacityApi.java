@@ -1,9 +1,9 @@
 package com.allclearwas.domains.enrollment.api;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.allclearwas.domains.enrollment.dto.request.CourseEnrollmentCountReq;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -33,6 +33,6 @@ public interface EnrollmentCapacityApi {
 					}""")
 			}))
 	})
-	ResponseEntity<?> getEnrolledCount(@RequestParam List<Long> ids);
+	ResponseEntity<?> getEnrolledCount(@RequestBody CourseEnrollmentCountReq req);
 }
 
