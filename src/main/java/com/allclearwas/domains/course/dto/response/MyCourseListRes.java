@@ -16,16 +16,16 @@ public record MyCourseListRes(
 ) {
 	public static MyCourseListRes of(MyCourseListDao dao) {
 		return new MyCourseListRes(
-			dao.enrollmentId(),
-			dao.courseId(),
-			dao.courseCode(),
-			dao.name(),
-			dao.professor().getName(),
-			dao.location().getName(),
-			dao.capacity(),
-			dao.credit(),
-			dao.time1(),
-			dao.time2()
+			dao.getEnrollmentId(),
+			dao.getCourseId(),
+			dao.getCourseCode(),
+			dao.getName(),
+			dao.getProfessor().getName(),
+			dao.getLocation().getName(),
+			dao.getCapacity(),
+			dao.getCredit(),
+			dao.getTime1(),
+			dao.getTime2()
 		);
 	}
 }
