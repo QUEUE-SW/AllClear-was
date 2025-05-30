@@ -3,6 +3,7 @@ package com.allclearwas.domains.course.repository.impl;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -52,34 +53,16 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 				equalsIfNotBlank(course.courseCode, request.code()))
 			.fetch();
 
-		Map<Long, List<CourseTime>> courseTimeMap = tuples.stream()
-			.filter(t -> t.get(courseTime) != null)
+		Map<Course, List<CourseTime>> grouped = tuples.stream()
+			.filter(t -> t.get(course) != null)
 			.collect(Collectors.groupingBy(
-				t -> t.get(course).getId(),
+				t -> t.get(course),
+				LinkedHashMap::new,
 				Collectors.mapping(t -> t.get(courseTime), Collectors.toList())
 			));
 
-		return tuples.stream()
-			.map(t -> {
-				Course c = t.get(course);
-				List<CourseTime> times = courseTimeMap.getOrDefault(c.getId(), List.of());
-
-				String time1 = formatTime(times, 0);
-				String time2 = formatTime(times, 1);
-
-				return new CourseListDao(
-					c.getId(),
-					c.getCourseCode(),
-					c.getName(),
-					c.getProfessor(),
-					c.getLocation(),
-					c.getCapacity(),
-					c.getCredit(),
-					time1,
-					time2
-				);
-			})
-			.distinct()
+		return grouped.entrySet().stream()
+			.map(entry -> toCourseListDao(entry.getKey(), entry.getValue()))
 			.toList();
 	}
 
@@ -93,37 +76,57 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 			.where(enrollment.student.id.eq(studentId))
 			.fetch();
 
-		Map<Long, List<CourseTime>> courseTimeMap = tuples.stream()
-			.filter(t -> t.get(courseTime) != null)
+		Map<Course, List<CourseTime>> grouped = tuples.stream()
+			.filter(t -> t.get(course) != null)
 			.collect(Collectors.groupingBy(
-				t -> t.get(course).getId(),
+				t -> t.get(course),
+				LinkedHashMap::new,
 				Collectors.mapping(t -> t.get(courseTime), Collectors.toList())
 			));
 
-		return tuples.stream()
-			.map(t -> {
-				Enrollment e = t.get(enrollment);
-				Course c = t.get(course);
-
-				List<CourseTime> times = courseTimeMap.getOrDefault(c.getId(), List.of());
-				String time1 = formatTime(times, 0);
-				String time2 = formatTime(times, 1);
-
-				return new MyCourseListDao(
-					e.getId(),
-					c.getId(),
-					c.getCourseCode(),
-					c.getName(),
-					c.getProfessor(),
-					c.getLocation(),
-					c.getCapacity(),
-					c.getCredit(),
-					time1,
-					time2
-				);
+		return grouped.entrySet().stream()
+			.map(entry -> {
+				Enrollment e = tuples.stream()
+					.filter(t -> t.get(course).equals(entry.getKey()))
+					.map(t -> t.get(enrollment))
+					.findFirst()
+					.orElse(null);
+				return toMyCourseListDao(e, entry.getKey(), entry.getValue());
 			})
-			.distinct()
 			.toList();
+	}
+
+	private CourseListDao toCourseListDao(Course c, List<CourseTime> times) {
+		String time1 = formatTime(times, 0);
+		String time2 = formatTime(times, 1);
+		return new CourseListDao(
+			c.getId(),
+			c.getCourseCode(),
+			c.getName(),
+			c.getProfessor(),
+			c.getLocation(),
+			c.getCapacity(),
+			c.getCredit(),
+			time1,
+			time2
+		);
+	}
+
+	private MyCourseListDao toMyCourseListDao(Enrollment e, Course c, List<CourseTime> times) {
+		String time1 = formatTime(times, 0);
+		String time2 = formatTime(times, 1);
+		return new MyCourseListDao(
+			e.getId(),
+			c.getId(),
+			c.getCourseCode(),
+			c.getName(),
+			c.getProfessor(),
+			c.getLocation(),
+			c.getCapacity(),
+			c.getCredit(),
+			time1,
+			time2
+		);
 	}
 
 	private <T> BooleanExpression equalsIfNotNull(SimpleExpression<T> path, T value) {
