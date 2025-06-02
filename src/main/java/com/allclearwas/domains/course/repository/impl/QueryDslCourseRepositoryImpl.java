@@ -24,7 +24,6 @@ import com.allclearwas.domains.enrollment.domain.QEnrollment;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.SimpleExpression;
-import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -50,7 +49,7 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 			.where(equalsIfNotNull(courseInfo.category, request.category()),
 				equalsIfNotNull(courseInfo.grade, request.grade()),
 				equalsIfNotNull(courseInfo.department, request.department()),
-				equalsIfNotBlank(course.courseCode, request.code()))
+				equalsIfNotNull(courseInfo.major, request.major()))
 			.fetch();
 
 		Map<Course, List<CourseTime>> grouped = tuples.stream()
@@ -131,10 +130,6 @@ public class QueryDslCourseRepositoryImpl implements QueryDslCourseRepository {
 
 	private <T> BooleanExpression equalsIfNotNull(SimpleExpression<T> path, T value) {
 		return value != null ? path.eq(value) : null;
-	}
-
-	private BooleanExpression equalsIfNotBlank(StringExpression path, String value) {
-		return value != null && !value.isBlank() ? path.eq(value) : null;
 	}
 
 	private String formatTime(List<CourseTime> times, int index) {
