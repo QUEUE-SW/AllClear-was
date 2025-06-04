@@ -7,6 +7,7 @@ import com.allclearwas.domains.course.dao.CourseListDao;
 import com.allclearwas.domains.course.dao.MyCourseListDao;
 import com.allclearwas.domains.course.dto.request.CourseFilterReq;
 import com.allclearwas.domains.course.repository.CourseRepository;
+import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,5 +23,9 @@ public class CourseReader {
 
 	public List<MyCourseListDao> findMyCourses(Long studentId) {
 		return courseRepository.findMyCourses(studentId);
+	}
+
+	public List<CourseEnrollmentCountRes> getEnrollmentCount(List<Long> courseIds) {
+		return courseRepository.findParticipantsByCourseIds(courseIds);
 	}
 }
