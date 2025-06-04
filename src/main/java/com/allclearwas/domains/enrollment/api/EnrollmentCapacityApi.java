@@ -27,8 +27,8 @@ public interface EnrollmentCapacityApi {
 					    "code": "2000",
 					    "message": "요청에 성공하였습니다.",
 					    "data": [
-					      { "courseId": 1, "current": 21},
-					      { "courseId": 2, "current": 15}
+					      { "courseId": 1, "participant": 21},
+					      { "courseId": 2, "participant": 15}
 					    ]
 					}""")
 			}))
