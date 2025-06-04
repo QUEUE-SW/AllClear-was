@@ -40,6 +40,7 @@ public class Course {
 
 	private int credit;
 	private int capacity;
+	private int participant;
 
 	@Enumerated(EnumType.STRING)
 	private Category category;
@@ -49,12 +50,14 @@ public class Course {
 	private CourseInfo courseInfo;
 
 	@Builder
-	public Course(String name, Professor professor, Location location, int credit, int capacity, Category category) {
+	public Course(String name, Professor professor, Location location, int credit, int capacity, int participant,
+		Category category) {
 		this.name = name;
 		this.professor = professor;
 		this.location = location;
 		this.credit = credit;
 		this.capacity = capacity;
+		this.participant = participant;
 		this.category = category;
 	}
 }
