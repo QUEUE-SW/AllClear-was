@@ -62,4 +62,8 @@ public class StudentPolicy {
 			.student(student)
 			.build();
 	}
+
+	public void updateCurrentCredits(int credits) {
+		this.currentCredits += credits;
+	}
 }
