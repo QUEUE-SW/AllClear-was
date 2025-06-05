@@ -39,9 +39,10 @@ public class CourseTime {
 	private Course course;
 
 	@Builder
-	public CourseTime(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
+	public CourseTime(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime, Course course) {
 		this.dayOfWeek = dayOfWeek;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.course = course;
 	}
 }
