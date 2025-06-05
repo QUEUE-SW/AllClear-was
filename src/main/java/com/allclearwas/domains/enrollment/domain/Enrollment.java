@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,4 +33,17 @@ public class Enrollment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "course_id")
 	private Course course;
+
+	@Builder
+	public Enrollment(Student student, Course course) {
+		this.student = student;
+		this.course = course;
+	}
+
+	public static Enrollment of(Student student, Course course) {
+		return Enrollment.builder()
+			.student(student)
+			.course(course)
+			.build();
+	}
 }
