@@ -10,7 +10,6 @@ import com.allclearwas.common.exception.enrollment.EnrollmentException;
 import com.allclearwas.common.exception.student.StudentErrorCode;
 import com.allclearwas.common.exception.student.StudentException;
 import com.allclearwas.domains.course.domain.Course;
-import com.allclearwas.domains.course.domain.CourseTime;
 import com.allclearwas.domains.course.implement.CourseReader;
 import com.allclearwas.domains.enrollment.domain.Enrollment;
 import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
@@ -67,8 +66,7 @@ public class EnrollmentService {
 			policy.getMaxCredits());
 
 		// 시간 중복 여부 확인
-		List<CourseTime> newTimes = courseReader.getCourseTimesByCourseId(courseId);
-		if (enrollmentReader.existsOverlappingTime(studentId, newTimes)) {
+		if (enrollmentReader.existsOverlappingTime(studentId, courseId)) {
 			throw new EnrollmentException(EnrollmentErrorCode.COURSE_TIME_OVERLAP);
 		}
 
