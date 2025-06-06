@@ -20,6 +20,7 @@ import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
 import com.allclearwas.domains.student.implement.StudentAppender;
+import com.allclearwas.domains.student.implement.StudentPolicyReader;
 import com.allclearwas.domains.student.implement.StudentPolicyValidator;
 import com.allclearwas.domains.student.implement.StudentReader;
 
@@ -34,6 +35,7 @@ public class EnrollmentService {
 	private final EnrollmentAppender enrollmentAppender;
 	private final StudentReader studentReader;
 	private final StudentAppender studentAppender;
+	private final StudentPolicyReader studentPolicyReader;
 	private final StudentPolicyValidator studentPolicyValidator;
 	private final CourseReader courseReader;
 
@@ -59,7 +61,10 @@ public class EnrollmentService {
 			.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
 
 		// 학생 정책 조회 및 최대 학점 초과 여부 확인
-		StudentPolicy policy = studentPolicyValidator.validateCreditLimit(studentId, course.getCredit());
+		StudentPolicy policy = studentPolicyReader.read(studentId)
+			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
+		studentPolicyValidator.validateCreditLimit(policy.getCurrentCredits(), course.getCredit(),
+			policy.getMaxCredits());
 
 		// 시간 중복 여부 확인
 		List<CourseTime> newTimes = courseReader.getCourseTimesByCourseId(courseId);
