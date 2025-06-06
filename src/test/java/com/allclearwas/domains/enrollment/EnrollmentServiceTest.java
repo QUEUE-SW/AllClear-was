@@ -55,7 +55,7 @@ public class EnrollmentServiceTest {
 			.professor(Professor.JONGWOOK_KWAK)
 			.location(Location.B02_152)
 			.credit(3)
-			.capacity(1)
+			.capacity(40)
 			.category(Category.MAJOR)
 			.participant(0)
 			.build();
@@ -72,7 +72,7 @@ public class EnrollmentServiceTest {
 		courseTimeRepository.save(time);
 
 		// 학생 6명 + 정책 등록
-		for (int i = 1; i <= 6; i++) {
+		for (int i = 1; i <= 100; i++) {
 			Student student = studentRepository.save(Student.builder()
 				.identifier("student" + i)
 				.password("pwd1234")
@@ -113,6 +113,6 @@ public class EnrollmentServiceTest {
 		latch.await();
 		executor.shutdown();
 
-		assertEquals(1, successCount.get(), "정원이 1명이므로 1명만 성공해야 함");
+		assertEquals(40, successCount.get(), "정원이 40명이므로 40명만 성공해야 함");
 	}
 }
