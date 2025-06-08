@@ -18,8 +18,8 @@ import com.allclearwas.domains.enrollment.implement.EnrollmentAppender;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
-import com.allclearwas.domains.student.implement.StudentAppender;
 import com.allclearwas.domains.student.implement.StudentPolicyReader;
+import com.allclearwas.domains.student.implement.StudentPolicyUpdater;
 import com.allclearwas.domains.student.implement.StudentPolicyValidator;
 import com.allclearwas.domains.student.implement.StudentReader;
 
@@ -33,7 +33,7 @@ public class EnrollmentService {
 	private final EnrollmentReader enrollmentReader;
 	private final EnrollmentAppender enrollmentAppender;
 	private final StudentReader studentReader;
-	private final StudentAppender studentAppender;
+	private final StudentPolicyUpdater studentPolicyUpdater;
 	private final StudentPolicyReader studentPolicyReader;
 	private final StudentPolicyValidator studentPolicyValidator;
 	private final CourseReader courseReader;
@@ -82,7 +82,7 @@ public class EnrollmentService {
 		Enrollment enrollment = enrollmentAppender.save(student, course);
 
 		// 학생 학점 갱신
-		studentAppender.updateStudentCredits(policy, course.getCredit());
+		studentPolicyUpdater.updateStudentCredits(policy, course.getCredit());
 
 		// 응답 반환
 		return EnrollmentRes.of(enrollment);
