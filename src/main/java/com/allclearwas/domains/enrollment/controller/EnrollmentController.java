@@ -28,11 +28,11 @@ public class EnrollmentController implements EnrollmentApi {
 
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping
-	public ResponseEntity<?> enrollCourse(@RequestBody EnrollmentReq request,
+	public ResponseEntity<?> enrollCourse(@RequestBody EnrollmentReq enrollmentReq,
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
-		log.debug("Requested courseId: {}", request.courseId());
+		log.debug("Requested courseId: {}", enrollmentReq.courseId());
 		Long studentId = userDetails.getStudentId();
-		EnrollmentRes response = enrollmentService.enrollCourse(request.courseId(), studentId);
+		EnrollmentRes response = enrollmentService.enrollCourse(enrollmentReq.courseId(), studentId);
 		log.debug("Enrollment result: {}", response);
 		return ResponseEntity.ok(SuccessResponse.of(response));
 	}
