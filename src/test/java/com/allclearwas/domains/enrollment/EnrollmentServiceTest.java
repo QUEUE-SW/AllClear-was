@@ -49,7 +49,7 @@ public class EnrollmentServiceTest {
 
 	@BeforeEach
 	void setup() {
-		// 강의 생성 (정원 1명)
+		// 강의 생성 (정원 40명)
 		Course course = Course.builder()
 			.name("테스트 강의")
 			.professor(Professor.JONGWOOK_KWAK)
@@ -71,7 +71,7 @@ public class EnrollmentServiceTest {
 			.build();
 		courseTimeRepository.save(time);
 
-		// 학생 6명 + 정책 등록
+		// 학생 100명 + 정책 등록
 		for (int i = 1; i <= 100; i++) {
 			Student student = studentRepository.save(Student.builder()
 				.identifier("student" + i)
@@ -88,7 +88,7 @@ public class EnrollmentServiceTest {
 	}
 
 	@Test
-	void 수강신청_동시성_정원1명_1명만성공() throws InterruptedException {
+	void 수강신청_동시성_정원40명_40명만성공() throws InterruptedException {
 		List<Long> studentIds = studentRepository.findAll().stream()
 			.map(Student::getId)
 			.toList();
