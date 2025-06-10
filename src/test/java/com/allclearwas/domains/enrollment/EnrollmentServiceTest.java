@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 
 import com.allclearwas.TestDatabaseConfig;
 import com.allclearwas.domains.course.domain.Course;
@@ -34,8 +33,7 @@ import com.allclearwas.domains.student.type.Department;
 import com.allclearwas.domains.student.type.Major;
 
 @SpringBootTest
-@Import(TestDatabaseConfig.class)
-public class EnrollmentServiceTest {
+public class EnrollmentServiceTest extends TestDatabaseConfig {
 
 	@Autowired
 	private EnrollmentService enrollmentService;
