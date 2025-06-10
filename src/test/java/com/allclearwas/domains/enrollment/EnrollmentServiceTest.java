@@ -88,31 +88,46 @@ public class EnrollmentServiceTest {
 	}
 
 	@Test
-	void 수강신청_동시성_정원40명_40명만성공() throws InterruptedException {
+	void d수강신청_동시성_정원40명_40명만성공() throws InterruptedException {
 		List<Long> studentIds = studentRepository.findAll().stream()
 			.map(Student::getId)
 			.toList();
 
 		ExecutorService executor = Executors.newFixedThreadPool(studentIds.size());
-		CountDownLatch latch = new CountDownLatch(studentIds.size());
+
+		CountDownLatch readyLatch = new CountDownLatch(studentIds.size()); // 준비 완료 확인용
+		CountDownLatch startLatch = new CountDownLatch(1); // 동시에 시작시키기 위한 latch
+		CountDownLatch endLatch = new CountDownLatch(studentIds.size());  // 전체 작업 완료 대기
+
 		AtomicInteger successCount = new AtomicInteger();
+		AtomicInteger failCount = new AtomicInteger();
 
 		for (Long studentId : studentIds) {
 			executor.submit(() -> {
 				try {
+					readyLatch.countDown();
+					startLatch.await();
 					enrollmentService.enrollCourse(savedCourseId, studentId);
 					successCount.incrementAndGet(); // 성공한 경우만 카운트
 				} catch (Exception e) {
-					// e.printStackTrace();
+					failCount.incrementAndGet();
+					System.out.println("실패한 studentId: " + studentId + "-> " + e.getMessage());
 				} finally {
-					latch.countDown();
+					endLatch.countDown();
 				}
 			});
 		}
 
-		latch.await();
+		readyLatch.await();
+		startLatch.countDown();
+		endLatch.await();
 		executor.shutdown();
 
+		Course course = courseRepository.findById(savedCourseId).orElseThrow();
+		System.out.println("최종 수강 인원: " + course.getParticipant());
+
 		assertEquals(40, successCount.get(), "정원이 40명이므로 40명만 성공해야 함");
+		assertEquals(60, failCount.get(), "100명 중 60명이 실패해야함");
+		assertEquals(40, course.getParticipant(), "Course의 participant 필드도 40이어야 함");
 	}
 }
