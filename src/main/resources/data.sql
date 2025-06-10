@@ -1,37 +1,37 @@
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (1, 'GENERAL', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 1, 'ALL', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
-VALUES (1, 40, 'GENERAL', '1333', 1, 'E21_115', '대학생활설계', 'NARAM_YOON', 1),
-       (2, 40, 'GENERAL', '1334', 1, 'E21_323', '대학생활설계', 'EUNHEE_PARK', 1),
-       (3, 40, 'GENERAL', '1335', 1, 'E21_114', '대학생활설계', 'NARAM_YOON', 1),
-       (4, 40, 'GENERAL', '1336', 1, 'E21_323', '대학생활설계', 'SEYOUNG_JANG', 1),
-       (5, 40, 'GENERAL', '1337', 1, 'E21_114', '대학생활설계', 'SEONGHO_PARK', 1),
-       (6, 40, 'GENERAL', '1338', 1, 'E21_323', '대학생활설계', 'EUNHEE_PARK', 1),
-       (7, 40, 'GENERAL', '1332', 1, 'E21_323', '대학생활설계', 'SEYOUNG_JANG', 1),
-       (8, 40, 'GENERAL', '1339', 3, 'F04_205', '소프트웨어와인공지능', 'GIBAESUNG', 1),
-       (9, 40, 'GENERAL', '1340', 3, 'E21_220', '소프트웨어와인공지능', 'YOUNGDEOK_PARK', 1),
-       (10, 40, 'GENERAL', '1341', 3, 'E21_109', '소프트웨어와인공지능', 'SUNGWON_KIM', 1),
-       (11, 40, 'GENERAL', '1342', 3, 'E21_109', '소프트웨어와인공지능', 'SUNGWON_KIM', 1),
-       (12, 40, 'GENERAL', '1343', 3, 'E21_220', '소프트웨어와인공지능', 'HAENGRAE_CHO', 1),
-       (13, 40, 'GENERAL', '1344', 3, 'F04_104', '소프트웨어와인공지능', 'DONGIN_LEE', 1),
-       (14, 40, 'GENERAL', '1345', 3, 'C02_320', '실용영어', 'TED_MITCHELL', 1),
-       (15, 40, 'GENERAL', '1347', 3, 'C02_323', '실용영어', 'WILL_YAMAGIO', 1),
-       (16, 40, 'GENERAL', '1349', 3, 'C02_316', '실용영어', 'TAD_HOON', 1),
-       (17, 40, 'GENERAL', '1351', 3, 'C02_321', '실용영어', 'JASON_FERNANDES', 1),
-       (18, 40, 'GENERAL', '1353', 3, 'C02_320', '실용영어', 'TED_MITCHELL', 1),
-       (19, 40, 'GENERAL', '1355', 3, 'B02_257', '실용영어', 'WONJOO_LEE', 1),
-       (20, 40, 'GENERAL', '1346', 3, 'B02_257', '실용영어', 'IMMI_KIM', 1),
-       (21, 40, 'GENERAL', '1348', 3, 'C02_321', '실용영어', 'THOMAS_DUBERNEY', 1),
-       (22, 40, 'GENERAL', '1350', 3, 'C02_318', '실용영어', 'NICHOLAS_PERITO', 1),
-       (23, 40, 'GENERAL', '1352', 3, 'B02_257', '실용영어', 'JISUK_SHIN', 1),
-       (24, 40, 'GENERAL', '1354', 3, 'B02_257', '실용영어', 'JUNGSEON_KIM', 1),
-       (25, 40, 'GENERAL', '1356', 3, 'C02_317', '실용영어', 'HABBY_WILKERSON', 1),
-       (26, 40, 'GENERAL', '1357', 3, 'E21_117', '행렬및행렬식', 'YOONHEE_CHOI', 1),
-       (27, 40, 'GENERAL', '1359', 3, 'E21_115', '행렬및행렬식', 'JIHYUN_SEO', 1),
-       (28, 40, 'GENERAL', '1361', 3, 'E21_115', '행렬및행렬식', 'YOUNGSU_KWON', 1),
-       (29, 40, 'GENERAL', '1358', 3, 'E21_124', '행렬및행렬식', 'SEJUNG_BANG', 1),
-       (30, 40, 'GENERAL', '1360', 3, 'E21_112', '행렬및행렬식', 'JIHYUN_SEO', 1);
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
+VALUES (1, 40, 0, 'GENERAL', '1333', 1, 'E21_115', '대학생활설계', 'NARAM_YOON', 1),
+       (2, 40, 0, 'GENERAL', '1334', 1, 'E21_323', '대학생활설계', 'EUNHEE_PARK', 1),
+       (3, 40, 0, 'GENERAL', '1335', 1, 'E21_114', '대학생활설계', 'NARAM_YOON', 1),
+       (4, 40, 0, 'GENERAL', '1336', 1, 'E21_323', '대학생활설계', 'SEYOUNG_JANG', 1),
+       (5, 40, 0, 'GENERAL', '1337', 1, 'E21_114', '대학생활설계', 'SEONGHO_PARK', 1),
+       (6, 40, 0, 'GENERAL', '1338', 1, 'E21_323', '대학생활설계', 'EUNHEE_PARK', 1),
+       (7, 40, 0, 'GENERAL', '1332', 1, 'E21_323', '대학생활설계', 'SEYOUNG_JANG', 1),
+       (8, 40, 0, 'GENERAL', '1339', 3, 'F04_205', '소프트웨어와인공지능', 'GIBAESUNG', 1),
+       (9, 40, 0, 'GENERAL', '1340', 3, 'E21_220', '소프트웨어와인공지능', 'YOUNGDEOK_PARK', 1),
+       (10, 40, 0, 'GENERAL', '1341', 3, 'E21_109', '소프트웨어와인공지능', 'SUNGWON_KIM', 1),
+       (11, 40, 0, 'GENERAL', '1342', 3, 'E21_109', '소프트웨어와인공지능', 'SUNGWON_KIM', 1),
+       (12, 40, 0, 'GENERAL', '1343', 3, 'E21_220', '소프트웨어와인공지능', 'HAENGRAE_CHO', 1),
+       (13, 40, 0, 'GENERAL', '1344', 3, 'F04_104', '소프트웨어와인공지능', 'DONGIN_LEE', 1),
+       (14, 40, 0, 'GENERAL', '1345', 3, 'C02_320', '실용영어', 'TED_MITCHELL', 1),
+       (15, 40, 0, 'GENERAL', '1347', 3, 'C02_323', '실용영어', 'WILL_YAMAGIO', 1),
+       (16, 40, 0, 'GENERAL', '1349', 3, 'C02_316', '실용영어', 'TAD_HOON', 1),
+       (17, 40, 0, 'GENERAL', '1351', 3, 'C02_321', '실용영어', 'JASON_FERNANDES', 1),
+       (18, 40, 0, 'GENERAL', '1353', 3, 'C02_320', '실용영어', 'TED_MITCHELL', 1),
+       (19, 40, 0, 'GENERAL', '1355', 3, 'B02_257', '실용영어', 'WONJOO_LEE', 1),
+       (20, 40, 0, 'GENERAL', '1346', 3, 'B02_257', '실용영어', 'IMMI_KIM', 1),
+       (21, 40, 0, 'GENERAL', '1348', 3, 'C02_321', '실용영어', 'THOMAS_DUBERNEY', 1),
+       (22, 40, 0, 'GENERAL', '1350', 3, 'C02_318', '실용영어', 'NICHOLAS_PERITO', 1),
+       (23, 40, 0, 'GENERAL', '1352', 3, 'B02_257', '실용영어', 'JISUK_SHIN', 1),
+       (24, 40, 0, 'GENERAL', '1354', 3, 'B02_257', '실용영어', 'JUNGSEON_KIM', 1),
+       (25, 40, 0, 'GENERAL', '1356', 3, 'C02_317', '실용영어', 'HABBY_WILKERSON', 1),
+       (26, 40, 0, 'GENERAL', '1357', 3, 'E21_117', '행렬및행렬식', 'YOONHEE_CHOI', 1),
+       (27, 40, 0, 'GENERAL', '1359', 3, 'E21_115', '행렬및행렬식', 'JIHYUN_SEO', 1),
+       (28, 40, 0, 'GENERAL', '1361', 3, 'E21_115', '행렬및행렬식', 'YOUNGSU_KWON', 1),
+       (29, 40, 0, 'GENERAL', '1358', 3, 'E21_124', '행렬및행렬식', 'SEJUNG_BANG', 1),
+       (30, 40, 0, 'GENERAL', '1360', 3, 'E21_112', '행렬및행렬식', 'JIHYUN_SEO', 1);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES (1, 'THURSDAY', '09:00:00', '09:50:00', 1),
@@ -88,27 +88,27 @@ VALUES (1, 'THURSDAY', '09:00:00', '09:50:00', 1),
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (2, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 2, 'CSE', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (31, 40, 'MAJOR', '1362', 3, 'E21_115', '논리회로', 'YOUNGHO_SON', 2),
-    (32, 40, 'MAJOR', '1363', 3, 'E21_115', '논리회로', 'YOUNGHO_SON', 2),
-    (33, 40, 'MAJOR', '1364', 3, 'E21_115', '논리회로', 'YOUNGHO_SON', 2),
-    (34, 40, 'MAJOR', '1365', 1, 'E21_214', '논리회로실험', 'CHANHEUM_PARK', 2),
-    (35, 40, 'MAJOR', '1366', 1, 'E21_214', '논리회로실험', 'CHANHEUM_PARK', 2),
-    (36, 40, 'MAJOR', '1367', 1, 'E21_214', '논리회로실험', 'HYUNKWAN_HAN', 2),
-    (37, 40, 'MAJOR', '1368', 1, 'E21_214', '논리회로실험', 'HYUNKWAN_HAN', 2),
-    (38, 40, 'MAJOR', '1369', 2, 'F04_104', '오픈소스SW의이해', 'YEONGSEOK_SEO', 2),
-    (39, 40, 'MAJOR', '1370', 2, 'F04_104', '오픈소스SW의이해', 'YEONGSEOK_SEO', 2),
-    (40, 40, 'MAJOR', '1371', 2, 'E21_113', '오픈소스SW의이해', 'YEONGSEOK_SEO', 2),
-    (41, 40, 'MAJOR', '1372', 3, 'E21_220', '프로그래밍언어', 'JONGHEE_YOON', 2),
-    (42, 40, 'MAJOR', '1373', 3, 'E21_220', '프로그래밍언어', 'JONGHEE_YOON', 2),
-    (43, 40, 'MAJOR', '1374', 3, 'E21_219', '프로그래밍언어', 'YONGHOON_JANG', 2),
-    (44, 40, 'MAJOR', '1375', 3, 'E21_219', '프로그래밍언어', 'SEJONG_LEE', 2),
-    (45, 40, 'MAJOR', '3558', 3, 'E21_219', '프로그래밍언어', 'SEJONG_LEE', 2),
-    (46, 40, 'MAJOR', '1376', 2, 'E21_123', '공학입문설계', 'BYOUNGCHEOL_AN', 2),
-    (47, 40, 'MAJOR', '1377', 2, 'E21_124', '공학입문설계', 'BYOUNGCHEOL_AN', 2),
-    (48, 40, 'MAJOR', '1378', 3, 'E21_115', '이산수학', 'CHANGHYUN_PARK', 2),
-    (49, 40, 'MAJOR', '1379', 3, 'E21_114', '이산수학', 'CHANGHYUN_PARK', 2);
+    (31, 40, 0, 'MAJOR', '1362', 3, 'E21_115', '논리회로', 'YOUNGHO_SON', 2),
+    (32, 40, 0, 'MAJOR', '1363', 3, 'E21_115', '논리회로', 'YOUNGHO_SON', 2),
+    (33, 40, 0, 'MAJOR', '1364', 3, 'E21_115', '논리회로', 'YOUNGHO_SON', 2),
+    (34, 40, 0, 'MAJOR', '1365', 1, 'E21_214', '논리회로실험', 'CHANHEUM_PARK', 2),
+    (35, 40, 0, 'MAJOR', '1366', 1, 'E21_214', '논리회로실험', 'CHANHEUM_PARK', 2),
+    (36, 40, 0, 'MAJOR', '1367', 1, 'E21_214', '논리회로실험', 'HYUNKWAN_HAN', 2),
+    (37, 40, 0, 'MAJOR', '1368', 1, 'E21_214', '논리회로실험', 'HYUNKWAN_HAN', 2),
+    (38, 40, 0, 'MAJOR', '1369', 2, 'F04_104', '오픈소스SW의이해', 'YEONGSEOK_SEO', 2),
+    (39, 40, 0, 'MAJOR', '1370', 2, 'F04_104', '오픈소스SW의이해', 'YEONGSEOK_SEO', 2),
+    (40, 40, 0, 'MAJOR', '1371', 2, 'E21_113', '오픈소스SW의이해', 'YEONGSEOK_SEO', 2),
+    (41, 40, 0, 'MAJOR', '1372', 3, 'E21_220', '프로그래밍언어', 'JONGHEE_YOON', 2),
+    (42, 40, 0, 'MAJOR', '1373', 3, 'E21_220', '프로그래밍언어', 'JONGHEE_YOON', 2),
+    (43, 40, 0, 'MAJOR', '1374', 3, 'E21_219', '프로그래밍언어', 'YONGHOON_JANG', 2),
+    (44, 40, 0, 'MAJOR', '1375', 3, 'E21_219', '프로그래밍언어', 'SEJONG_LEE', 2),
+    (45, 40, 0, 'MAJOR', '3558', 3, 'E21_219', '프로그래밍언어', 'SEJONG_LEE', 2),
+    (46, 40, 0, 'MAJOR', '1376', 2, 'E21_123', '공학입문설계', 'BYOUNGCHEOL_AN', 2),
+    (47, 40, 0, 'MAJOR', '1377', 2, 'E21_124', '공학입문설계', 'BYOUNGCHEOL_AN', 2),
+    (48, 40, 0, 'MAJOR', '1378', 3, 'E21_115', '이산수학', 'CHANGHYUN_PARK', 2),
+    (49, 40, 0, 'MAJOR', '1379', 3, 'E21_114', '이산수학', 'CHANGHYUN_PARK', 2);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES
@@ -146,20 +146,20 @@ VALUES
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (3, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 2, 'ICE', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (50, 40, 'MAJOR', '1380', 3, 'E21_113', '공업수학(1)', 'HOYEOL_JUNG', 3),
-    (51, 40, 'MAJOR', '3442', 3, 'E21_113', '공업수학(1)', 'HOYEOL_JUNG', 3),
-    (52, 40, 'MAJOR', '1382', 3, 'E21_116', '논리회로', 'SUNGWON_KIM', 3),
-    (53, 40, 'MAJOR', '1383', 3, 'E21_116', '논리회로', 'SUNGWON_KIM', 3),
-    (54, 40, 'MAJOR', '1384', 3, 'E21_319', '프로그래밍언어', 'YOUNGTAK_KIM', 3),
-    (55, 40, 'MAJOR', '1385', 3, 'E21_319', '프로그래밍언어', 'YOUNGTAK_KIM', 3),
-    (56, 40, 'MAJOR', '1386', 1, 'E21_322', '회로실험(1)', 'SUNGWON_KIM', 3),
-    (57, 40, 'MAJOR', '1387', 1, 'E21_322', '회로실험(1)', 'SUNGWON_KIM', 3),
-    (58, 40, 'MAJOR', '1388', 3, 'E21_116', '회로이론', 'JINGU_CHOI', 3),
-    (59, 40, 'MAJOR', '1389', 3, 'E21_116', '회로이론', 'JINGU_CHOI', 3),
-    (60, 40, 'MAJOR', '1390', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 3),
-    (61, 40, 'MAJOR', '1408', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 3);
+    (50, 40, 0, 'MAJOR', '1380', 3, 'E21_113', '공업수학(1)', 'HOYEOL_JUNG', 3),
+    (51, 40, 0, 'MAJOR', '3442', 3, 'E21_113', '공업수학(1)', 'HOYEOL_JUNG', 3),
+    (52, 40, 0, 'MAJOR', '1382', 3, 'E21_116', '논리회로', 'SUNGWON_KIM', 3),
+    (53, 40, 0, 'MAJOR', '1383', 3, 'E21_116', '논리회로', 'SUNGWON_KIM', 3),
+    (54, 40, 0, 'MAJOR', '1384', 3, 'E21_319', '프로그래밍언어', 'YOUNGTAK_KIM', 3),
+    (55, 40, 0, 'MAJOR', '1385', 3, 'E21_319', '프로그래밍언어', 'YOUNGTAK_KIM', 3),
+    (56, 40, 0, 'MAJOR', '1386', 1, 'E21_322', '회로실험(1)', 'SUNGWON_KIM', 3),
+    (57, 40, 0, 'MAJOR', '1387', 1, 'E21_322', '회로실험(1)', 'SUNGWON_KIM', 3),
+    (58, 40, 0, 'MAJOR', '1388', 3, 'E21_116', '회로이론', 'JINGU_CHOI', 3),
+    (59, 40, 0, 'MAJOR', '1389', 3, 'E21_116', '회로이론', 'JINGU_CHOI', 3),
+    (60, 40, 0, 'MAJOR', '1390', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 3),
+    (61, 40, 0, 'MAJOR', '1408', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 3);
 
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
@@ -189,15 +189,15 @@ VALUES
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (4, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 2, 'SC', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (62, 40, 'MAJOR', '1406', 3, 'E21_124', '보안기초', 'SEUNGYEOB_NAM', 4),
-    (63, 40, 'MAJOR', '1407', 3, 'E21_106', '자바프로그래밍및실습', 'WOOGIL_PARK', 4),
-    (64, 40, 'MAJOR', '1390', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 4),
-    (65, 40, 'MAJOR', '1408', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 4),
-    (66, 40, 'MAJOR', '1409', 3, 'E21_124', '논리회로', 'SUNGWON_KIM', 4),
-    (67, 40, 'MAJOR', '1410', 3, 'E21_124', '이산수학', 'GWONHYOU_CHOI', 4),
-    (68, 40, 'MAJOR', '1411', 3, 'E21_112', '통계분석및모델링', 'GONGYOON_SA', 4);
+    (62, 40, 0, 'MAJOR', '1406', 3, 'E21_124', '보안기초', 'SEUNGYEOB_NAM', 4),
+    (63, 40, 0, 'MAJOR', '1407', 3, 'E21_106', '자바프로그래밍및실습', 'WOOGIL_PARK', 4),
+    (64, 40, 0, 'MAJOR', '1390', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 4),
+    (65, 40, 0, 'MAJOR', '1408', 2, 'F04_104', '공학입문설계', 'JINGU_CHOI', 4),
+    (66, 40, 0, 'MAJOR', '1409', 3, 'E21_124', '논리회로', 'SUNGWON_KIM', 4),
+    (67, 40, 0, 'MAJOR', '1410', 3, 'E21_124', '이산수학', 'GWONHYOU_CHOI', 4),
+    (68, 40, 0, 'MAJOR', '1411', 3, 'E21_112', '통계분석및모델링', 'GONGYOON_SA', 4);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES
@@ -218,23 +218,23 @@ VALUES
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (5, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 3, 'CSE', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (69, 40, 'MAJOR', '1245', 3, 'E21_221', 'IoT와임베디드소프트웨어', 'SEJONG_LEE', 5),
-    (70, 40, 'MAJOR', '1246', 3, 'E21_117', 'IoT와임베디드소프트웨어', 'KYUNGMIN_KIM', 5),
-    (71, 40, 'MAJOR', '3397', 3, 'E21_221', 'IoT와임베디드소프트웨어', 'SEJONG_LEE', 5),
-    (72, 40, 'MAJOR', '3398', 3, 'E21_117', 'IoT와임베디드소프트웨어', 'KYUNGMIN_KIM', 5),
-    (73, 40, 'MAJOR', '1248', 3, 'E21_115', '알고리즘', 'HAENGRAE_CHO', 5),
-    (74, 40, 'MAJOR', '1249', 3, 'E21_114', '알고리즘', 'HAENGRAE_CHO', 5),
-    (76, 40, 'MAJOR', '1250', 2, 'E21_114', '오픈소스SW설계', 'YEONGSEOK_SEO', 5),
-    (77, 40, 'MAJOR', '1251', 2, 'E21_114', '오픈소스SW설계', 'YEONGSEOK_SEO', 5),
-    (78, 40, 'MAJOR', '1253', 3, 'E21_117', '운영체제', 'JONGWOOK_KWAK', 5),
-    (79, 40, 'MAJOR', '1254', 3, 'E21_117', '운영체제', 'JONGWOOK_KWAK', 5),
-    (80, 40, 'MAJOR', '1252', 3, 'E21_109', '운영체제', 'JONGWOOK_KWAK', 5),
-    (81, 40, 'MAJOR', '1255', 3, 'E21_109', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5),
-    (82, 40, 'MAJOR', '1256', 3, 'E21_219', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5),
-    (83, 40, 'MAJOR', '1257', 3, 'E21_117', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5),
-    (84, 40, 'MAJOR', '1258', 3, 'E21_220', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5);
+    (69, 40, 0, 'MAJOR', '1245', 3, 'E21_221', 'IoT와임베디드소프트웨어', 'SEJONG_LEE', 5),
+    (70, 40, 0, 'MAJOR', '1246', 3, 'E21_117', 'IoT와임베디드소프트웨어', 'KYUNGMIN_KIM', 5),
+    (71, 40, 0, 'MAJOR', '3397', 3, 'E21_221', 'IoT와임베디드소프트웨어', 'SEJONG_LEE', 5),
+    (72, 40, 0, 'MAJOR', '3398', 3, 'E21_117', 'IoT와임베디드소프트웨어', 'KYUNGMIN_KIM', 5),
+    (73, 40, 0, 'MAJOR', '1248', 3, 'E21_115', '알고리즘', 'HAENGRAE_CHO', 5),
+    (74, 40, 0, 'MAJOR', '1249', 3, 'E21_114', '알고리즘', 'HAENGRAE_CHO', 5),
+    (76, 40, 0, 'MAJOR', '1250', 2, 'E21_114', '오픈소스SW설계', 'YEONGSEOK_SEO', 5),
+    (77, 40, 0, 'MAJOR', '1251', 2, 'E21_114', '오픈소스SW설계', 'YEONGSEOK_SEO', 5),
+    (78, 40, 0, 'MAJOR', '1253', 3, 'E21_117', '운영체제', 'JONGWOOK_KWAK', 5),
+    (79, 40, 0, 'MAJOR', '1254', 3, 'E21_117', '운영체제', 'JONGWOOK_KWAK', 5),
+    (80, 40, 0, 'MAJOR', '1252', 3, 'E21_109', '운영체제', 'JONGWOOK_KWAK', 5),
+    (81, 40, 0, 'MAJOR', '1255', 3, 'E21_109', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5),
+    (82, 40, 0, 'MAJOR', '1256', 3, 'E21_219', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5),
+    (83, 40, 0, 'MAJOR', '1257', 3, 'E21_117', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5),
+    (84, 40, 0, 'MAJOR', '1258', 3, 'E21_220', '컴퓨터네트워크', 'YOUNGDEOK_PARK', 5);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES
@@ -271,19 +271,19 @@ VALUES
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (6, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 3, 'ICE', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (85, 40, 'MAJOR', '1392', 3, 'E21_319', '데이터통신및실습', 'SEUNGYEOB_NAM', 6),
-    (86, 40, 'MAJOR', '1393', 3, 'E21_319', '데이터통신및실습', 'SEUNGYEOB_NAM', 6),
-    (87, 40, 'MAJOR', '1394', 3, 'E21_116', '디지털신호처리', 'GUKYEOL_YOO', 6),
-    (88, 40, 'MAJOR', '1395', 3, 'E21_116', '디지털신호처리', 'GUKYEOL_YOO', 6),
-    (89, 40, 'MAJOR', '1396', 2, 'E21_113', '오픈소스SW설계', 'SEUNGHOON_JU', 6),
-    (90, 40, 'MAJOR', '3512', 3, 'E21_319', '통신시스템', 'GWONHYOU_CHOI', 6),
-    (91, 40, 'MAJOR', '3513', 3, 'E21_319', '통신시스템', 'GWONHYOU_CHOI', 6),
-    (92, 40, 'MAJOR', '1397', 3, 'E21_116', '알고리즘', 'WOOGIL_PARK', 6),
-    (93, 40, 'MAJOR', '1398', 3, 'E21_116', '알고리즘', 'WOOGIL_PARK', 6),
-    (94, 40, 'MAJOR', '1399', 3, 'E21_113', '운영체제', 'GYUSANG_CHOI', 6),
-    (95, 40, 'MAJOR', '3650', 3, 'E21_114', '운영체제', 'GYUSANG_CHOI', 6);
+    (85, 40, 0, 'MAJOR', '1392', 3, 'E21_319', '데이터통신및실습', 'SEUNGYEOB_NAM', 6),
+    (86, 40, 0, 'MAJOR', '1393', 3, 'E21_319', '데이터통신및실습', 'SEUNGYEOB_NAM', 6),
+    (87, 40, 0, 'MAJOR', '1394', 3, 'E21_116', '디지털신호처리', 'GUKYEOL_YOO', 6),
+    (88, 40, 0, 'MAJOR', '1395', 3, 'E21_116', '디지털신호처리', 'GUKYEOL_YOO', 6),
+    (89, 40, 0, 'MAJOR', '1396', 2, 'E21_113', '오픈소스SW설계', 'SEUNGHOON_JU', 6),
+    (90, 40, 0, 'MAJOR', '3512', 3, 'E21_319', '통신시스템', 'GWONHYOU_CHOI', 6),
+    (91, 40, 0, 'MAJOR', '3513', 3, 'E21_319', '통신시스템', 'GWONHYOU_CHOI', 6),
+    (92, 40, 0, 'MAJOR', '1397', 3, 'E21_116', '알고리즘', 'WOOGIL_PARK', 6),
+    (93, 40, 0, 'MAJOR', '1398', 3, 'E21_116', '알고리즘', 'WOOGIL_PARK', 6),
+    (94, 40, 0, 'MAJOR', '1399', 3, 'E21_113', '운영체제', 'GYUSANG_CHOI', 6),
+    (95, 40, 0, 'MAJOR', '3650', 3, 'E21_114', '운영체제', 'GYUSANG_CHOI', 6);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES
@@ -314,14 +314,14 @@ VALUES
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (7, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 3, 'SC', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (96, 40, 'MAJOR', '1412', 3, 'E21_124', '딥러닝', 'GWONHYOU_CHOI', 7),
-    (97, 40, 'MAJOR', '1247', 3, 'E21_114', '알고리즘', 'HAENGRAE_CHO', 7),
-    (98, 40, 'MAJOR', '1252', 3, 'E21_109', '운영체제', 'JONGWOOK_KWAK', 7),
-    (99, 40, 'MAJOR', '1414', 3, 'E21_106', '인공지능과컴퓨터비전', 'GUKYEOL_YOO', 7),
-    (100, 40, 'MAJOR', '1415', 3, 'E21_109', '빅데이터개론', 'GYUSANG_CHOI', 7),
-    (101, 40, 'MAJOR', '1416', 3, 'E21_124', '웹프로그래밍', 'YOUNGTAK_KIM', 7);
+    (96, 40, 0, 'MAJOR', '1412', 3, 'E21_124', '딥러닝', 'GWONHYOU_CHOI', 7),
+    (97, 40, 0,  'MAJOR', '1247', 3, 'E21_114', '알고리즘', 'HAENGRAE_CHO', 7),
+    (98, 40, 0, 'MAJOR', '1252', 3, 'E21_109', '운영체제', 'JONGWOOK_KWAK', 7),
+    (99, 40, 0,  'MAJOR', '1414', 3, 'E21_106', '인공지능과컴퓨터비전', 'GUKYEOL_YOO', 7),
+    (100, 40, 0, 'MAJOR', '1415', 3, 'E21_109', '빅데이터개론', 'GYUSANG_CHOI', 7),
+    (101, 40, 0, 'MAJOR', '1416', 3, 'E21_124', '웹프로그래밍', 'YOUNGTAK_KIM', 7);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES
@@ -344,18 +344,18 @@ INSERT INTO course_info (course_info_id, category, college, department, grade, m
 VALUES (8, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 4, 'CSE', 'FIRST');
 
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (102, 40, 'MAJOR', '1259', 2, 'E21_114', 'MIDAS종합설계(1)', 'JONGHEE_YOON', 8),
-    (103, 40, 'MAJOR', '1260', 2, 'E21_114', 'MIDAS종합설계(1)', 'JONGHEE_YOON', 8),
-    (104, 40, 'MAJOR', '1261', 2, 'E21_111', 'MIDAS종합설계(1)', 'JONGHEE_YOON', 8),
-    (105, 40, 'MAJOR', '1262', 2, 'E21_114', '네트워크보안과블록체인', 'HAENGRAE_CHO', 8),
-    (106, 40, 'MAJOR', '1263', 3, 'E21_220', '산업체요구문제연구', 'CHANGHYUN_PARK', 8),
-    (107, 40, 'MAJOR', '1769', 3, 'B02_152', '상업정보교재연구및지도법', 'SANGHEUM_YOON', 8),
-    (108, 40, 'MAJOR', '1264', 2, 'E21_219', '웹프로그래밍', 'JONGHEE_YOON', 8),
-    (109, 40, 'MAJOR', '1265', 2, 'E21_220', '웹프로그래밍', 'JONGHEE_YOON', 8),
-    (110, 40, 'MAJOR', '1266', 3, 'E21_109', '인공지능', 'CHANGHYUN_PARK', 8),
-    (111, 40, 'MAJOR', '3630', 3, 'E21_114', '인공지능', 'SEJONG_LEE', 8);
+    (102, 40, 0, 'MAJOR', '1259', 2, 'E21_114', 'MIDAS종합설계(1)', 'JONGHEE_YOON', 8),
+    (103, 40, 0, 'MAJOR', '1260', 2, 'E21_114', 'MIDAS종합설계(1)', 'JONGHEE_YOON', 8),
+    (104, 40, 0, 'MAJOR', '1261', 2, 'E21_111', 'MIDAS종합설계(1)', 'JONGHEE_YOON', 8),
+    (105, 40, 0, 'MAJOR', '1262', 2, 'E21_114', '네트워크보안과블록체인', 'HAENGRAE_CHO', 8),
+    (106, 40, 0, 'MAJOR', '1263', 3, 'E21_220', '산업체요구문제연구', 'CHANGHYUN_PARK', 8),
+    (107, 40, 0, 'MAJOR', '1769', 3, 'B02_152', '상업정보교재연구및지도법', 'SANGHEUM_YOON', 8),
+    (108, 40, 0, 'MAJOR', '1264', 2, 'E21_219', '웹프로그래밍', 'JONGHEE_YOON', 8),
+    (109, 40, 0, 'MAJOR', '1265', 2, 'E21_220', '웹프로그래밍', 'JONGHEE_YOON', 8),
+    (110, 40, 0, 'MAJOR', '1266', 3, 'E21_109', '인공지능', 'CHANGHYUN_PARK', 8),
+    (111, 40, 0, 'MAJOR', '3630', 3, 'E21_114', '인공지능', 'SEJONG_LEE', 8);
 
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
@@ -377,17 +377,17 @@ VALUES
 INSERT INTO course_info (course_info_id, category, college, department, grade, major, semester)
 VALUES (9, 'MAJOR', 'DIGITAL_CONVERGENCE', 'COMPUTER_SCIENCE_AND_ENGINEERING', 4, 'ICE', 'FIRST');
 
-INSERT INTO course (course_id, capacity, category, course_code, credit, location, name, professor, course_info_id)
+INSERT INTO course (course_id, capacity, participant, category, course_code, credit, location, name, professor, course_info_id)
 VALUES
-    (112, 40, 'MAJOR', '1400', 2, 'E21_113', 'MIDAS종합설계(1)', 'DONGIN_LEE', 9),
-    (113, 40, 'MAJOR', '3390', 2, 'E21_116', 'MIDAS종합설계(1)', 'DONGIN_LEE', 9),
-    (114, 40, 'MAJOR', '1011', 3, 'E29_254', '공업교육론', 'TAEHWAN_OH', 9),
-    (115, 40, 'MAJOR', '1401', 2, 'E21_116', '네트워크보안', 'WOOGIL_PARK', 9),
-    (116, 40, 'MAJOR', '3523', 2, 'E21_112', '모바일통신', 'SUJEONG_HEO', 9),
-    (117, 40, 'MAJOR', '1402', 2, 'F04_104', '빅데이터응용', 'GYUSANG_CHOI', 9),
-    (118, 40, 'MAJOR', '1403', 2, 'E21_106', '인공지능응용', 'GUKYEOL_YOO', 9),
-    (119, 40, 'MAJOR', '1404', 2, 'E21_106', '인공지능응용', 'GUKYEOL_YOO', 9),
-    (120, 40, 'MAJOR', '1405', 3, 'E21_113', '컴퓨터비전', 'HOYEOL_JUNG', 9);
+    (112, 40, 0, 'MAJOR', '1400', 2, 'E21_113', 'MIDAS종합설계(1)', 'DONGIN_LEE', 9),
+    (113, 40, 0, 'MAJOR', '3390', 2, 'E21_116', 'MIDAS종합설계(1)', 'DONGIN_LEE', 9),
+    (114, 40, 0, 'MAJOR', '1011', 3, 'E29_254', '공업교육론', 'TAEHWAN_OH', 9),
+    (115, 40, 0, 'MAJOR', '1401', 2, 'E21_116', '네트워크보안', 'WOOGIL_PARK', 9),
+    (116, 40, 0, 'MAJOR', '3523', 2, 'E21_112', '모바일통신', 'SUJEONG_HEO', 9),
+    (117, 40, 0, 'MAJOR', '1402', 2, 'F04_104', '빅데이터응용', 'GYUSANG_CHOI', 9),
+    (118, 40, 0, 'MAJOR', '1403', 2, 'E21_106', '인공지능응용', 'GUKYEOL_YOO', 9),
+    (119, 40, 0, 'MAJOR', '1404', 2, 'E21_106', '인공지능응용', 'GUKYEOL_YOO', 9),
+    (120, 40, 0, 'MAJOR', '1405', 3, 'E21_113', '컴퓨터비전', 'HOYEOL_JUNG', 9);
 
 INSERT INTO course_time (course_time_id, day_of_week, start_time, end_time, course_id)
 VALUES
