@@ -59,6 +59,9 @@ public class EnrollmentService {
 		Course course = courseReader.readWithPessimisticLock(courseId)
 			.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
 
+		// 전공 제한 검증
+		enrollmentValidator.validateMajorPermission(student.getMajor(), course.getCourseInfo().getMajor());
+
 		// 학생 정책 조회 및 최대 학점 초과 여부 확인
 		StudentPolicy policy = studentPolicyReader.read(studentId)
 			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
