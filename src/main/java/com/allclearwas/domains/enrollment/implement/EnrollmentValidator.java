@@ -1,14 +1,9 @@
-package com.allclearwas.domains.student.implement;
+package com.allclearwas.domains.enrollment.implement;
 
-import com.allclearwas.common.annotation.Implementation;
 import com.allclearwas.common.exception.enrollment.EnrollmentErrorCode;
 import com.allclearwas.common.exception.enrollment.EnrollmentException;
 
-import lombok.RequiredArgsConstructor;
-
-@Implementation
-@RequiredArgsConstructor
-public class StudentPolicyValidator {
+public class EnrollmentValidator {
 
 	public void validateCreditLimit(int currentCredit, int newCourseCredit, int maxCredit) {
 
@@ -16,4 +11,5 @@ public class StudentPolicyValidator {
 			throw new EnrollmentException(EnrollmentErrorCode.EXCEED_CREDIT_LIMIT);
 		}
 	}
+
 }
