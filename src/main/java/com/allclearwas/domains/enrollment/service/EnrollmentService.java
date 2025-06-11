@@ -59,6 +59,11 @@ public class EnrollmentService {
 		Course course = courseReader.readWithPessimisticLock(courseId)
 			.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
 
+		// 동일 이름 과목 신청 여부 확인
+		if (enrollmentReader.existsByStudentIdAndSameCourseName(studentId, course.getName())) {
+			throw new EnrollmentException(EnrollmentErrorCode.ALREADY_ENROLLED_SAME_COURSE_NAME);
+		}
+
 		// 전공 제한 검증
 		enrollmentValidator.validateMajorPermission(student.getMajor(), course.getCourseInfo().getMajor());
 

@@ -18,4 +18,8 @@ public class EnrollmentReader {
 	public boolean existsOverlappingTime(Long studentId, Long courseId) {
 		return enrollmentRepository.existsOverlappingTime(studentId, courseId);
 	}
+
+	public boolean existsByStudentIdAndSameCourseName(Long studentId, String courseName) {
+		return enrollmentRepository.existsByStudentIdAndCourse_Name(studentId, courseName);
+	}
 }
