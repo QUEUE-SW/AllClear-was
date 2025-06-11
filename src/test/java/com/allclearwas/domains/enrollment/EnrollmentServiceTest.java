@@ -89,7 +89,7 @@ public class EnrollmentServiceTest extends TestDatabaseConfig {
 	}
 
 	@Test
-	void d수강신청_동시성_정원40명_40명만성공() throws InterruptedException {
+	void 수강신청_동시성_정원40명_40명만성공() throws InterruptedException {
 		List<Long> studentIds = studentRepository.findAll().stream()
 			.map(Student::getId)
 			.toList();
