@@ -29,8 +29,6 @@ public class StudentPolicy {
 	private int maxCredits;
 	private int minCredits;
 	private int currentCredits;
-	private int generalEducationCredits;
-	private int majorCredits;
 
 	@Enumerated(EnumType.STRING)
 	private Semester semester;
@@ -40,13 +38,10 @@ public class StudentPolicy {
 	private Student student;
 
 	@Builder
-	public StudentPolicy(int maxCredits, int minCredits, int currentCredits, int generalEducationCredits,
-		int majorCredits, Semester semester, Student student) {
+	public StudentPolicy(int maxCredits, int minCredits, int currentCredits, Semester semester, Student student) {
 		this.maxCredits = maxCredits;
 		this.minCredits = minCredits;
 		this.currentCredits = currentCredits;
-		this.generalEducationCredits = generalEducationCredits;
-		this.majorCredits = majorCredits;
 		this.semester = semester;
 		this.student = student;
 	}
@@ -56,10 +51,12 @@ public class StudentPolicy {
 			.maxCredits(18)
 			.minCredits(15)
 			.currentCredits(0)
-			.generalEducationCredits(0)
-			.majorCredits(0)
 			.semester(Semester.FIRST)
 			.student(student)
 			.build();
+	}
+
+	public void updateCurrentCredits(int credits) {
+		this.currentCredits += credits;
 	}
 }

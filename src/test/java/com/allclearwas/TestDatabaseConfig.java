@@ -26,5 +26,6 @@ public abstract class TestDatabaseConfig {
 		registry.add("spring.datasource.url", MYSQL_CONTAINER::getJdbcUrl);
 		registry.add("spring.datasource.username", MYSQL_CONTAINER::getUsername);
 		registry.add("spring.datasource.password", MYSQL_CONTAINER::getPassword);
+		registry.add("spring.jpa.hibernate.ddl-auto", () -> "create");
 	}
 }

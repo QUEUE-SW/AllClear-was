@@ -9,9 +9,11 @@ import lombok.RequiredArgsConstructor;
 @Implementation
 @RequiredArgsConstructor
 public class StudentAppender {
+
 	private final StudentRepository studentRepository;
 
 	public void append(Student student) {
 		studentRepository.save(student);
 	}
 }
+

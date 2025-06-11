@@ -60,4 +60,8 @@ public class Course {
 		this.participant = participant;
 		this.category = category;
 	}
+
+	public void incrementParticipant() {
+		this.participant++;
+	}
 }
