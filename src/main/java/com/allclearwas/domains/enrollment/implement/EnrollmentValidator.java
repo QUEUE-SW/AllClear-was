@@ -1,9 +1,14 @@
 package com.allclearwas.domains.enrollment.implement;
 
+import com.allclearwas.common.annotation.Implementation;
 import com.allclearwas.common.exception.enrollment.EnrollmentErrorCode;
 import com.allclearwas.common.exception.enrollment.EnrollmentException;
 import com.allclearwas.domains.student.type.Major;
 
+import lombok.RequiredArgsConstructor;
+
+@Implementation
+@RequiredArgsConstructor
 public class EnrollmentValidator {
 
 	public void validateCreditLimit(int currentCredit, int newCourseCredit, int maxCredit) {

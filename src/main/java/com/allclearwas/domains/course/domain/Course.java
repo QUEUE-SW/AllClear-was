@@ -51,7 +51,7 @@ public class Course {
 
 	@Builder
 	public Course(String name, Professor professor, Location location, int credit, int capacity, int participant,
-		Category category) {
+		Category category, CourseInfo courseInfo) {
 		this.name = name;
 		this.professor = professor;
 		this.location = location;
@@ -59,6 +59,7 @@ public class Course {
 		this.capacity = capacity;
 		this.participant = participant;
 		this.category = category;
+		this.courseInfo = courseInfo;
 	}
 
 	public void incrementParticipant() {

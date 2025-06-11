@@ -19,6 +19,7 @@ import com.allclearwas.TestDatabaseConfig;
 import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.domain.CourseInfo;
 import com.allclearwas.domains.course.domain.CourseTime;
+import com.allclearwas.domains.course.repository.CourseInfoRepository;
 import com.allclearwas.domains.course.repository.CourseRepository;
 import com.allclearwas.domains.course.repository.CourseTimeRepository;
 import com.allclearwas.domains.course.type.Category;
@@ -47,6 +48,8 @@ public class EnrollmentServiceTest extends TestDatabaseConfig {
 	private StudentRepository studentRepository;
 	@Autowired
 	private StudentPolicyRepository studentPolicyRepository;
+	@Autowired
+	private CourseInfoRepository courseInfoRepository;
 
 	private Long savedCourseId;
 
@@ -58,9 +61,10 @@ public class EnrollmentServiceTest extends TestDatabaseConfig {
 			.category(Category.MAJOR)
 			.college(College.ENGINEERING)
 			.department(Department.COMPUTER_SCIENCE_AND_ENGINEERING)
-			.major(Major.CSE)
+			.major(Major.ALL)
 			.grade(1)
 			.build();
+		courseInfo = courseInfoRepository.save(courseInfo);
 
 		// 강의 생성 (정원 40명)
 		Course course = Course.builder()
@@ -71,6 +75,7 @@ public class EnrollmentServiceTest extends TestDatabaseConfig {
 			.capacity(40)
 			.category(Category.MAJOR)
 			.participant(0)
+			.courseInfo(courseInfo)
 			.build();
 		Course savedCourse = courseRepository.save(course);
 		savedCourseId = savedCourse.getId();
