@@ -66,4 +66,16 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 			)
 			.fetchFirst() != null;
 	}
+
+	@Override
+	public boolean existsByEnrollmentIdAndStudentId(Long enrollmentId, Long studentId) {
+		return queryFactory
+			.selectOne()
+			.from(enrollment)
+			.where(
+				enrollment.id.eq(enrollmentId),
+				enrollment.student.id.eq(studentId)
+			)
+			.fetchFirst() != null;
+	}
 }
