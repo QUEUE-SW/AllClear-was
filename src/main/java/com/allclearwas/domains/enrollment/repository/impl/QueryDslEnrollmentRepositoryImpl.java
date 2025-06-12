@@ -53,4 +53,17 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 
 		return exists;
 	}
+
+	@Override
+	public boolean existsByStudentIdAndCourseName(Long studentId, String courseName) {
+		return queryFactory
+			.selectOne()
+			.from(enrollment)
+			.join(enrollment.course, course)
+			.where(
+				enrollment.student.id.eq(studentId),
+				course.name.eq(courseName)
+			)
+			.fetchFirst() != null;
+	}
 }

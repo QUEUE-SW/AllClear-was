@@ -16,11 +16,11 @@ import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 import com.allclearwas.domains.enrollment.dto.response.EnrollmentRes;
 import com.allclearwas.domains.enrollment.implement.EnrollmentAppender;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
+import com.allclearwas.domains.enrollment.implement.EnrollmentValidator;
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
 import com.allclearwas.domains.student.implement.StudentPolicyReader;
 import com.allclearwas.domains.student.implement.StudentPolicyUpdater;
-import com.allclearwas.domains.student.implement.StudentPolicyValidator;
 import com.allclearwas.domains.student.implement.StudentReader;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,7 @@ public class EnrollmentService {
 	private final StudentReader studentReader;
 	private final StudentPolicyUpdater studentPolicyUpdater;
 	private final StudentPolicyReader studentPolicyReader;
-	private final StudentPolicyValidator studentPolicyValidator;
+	private final EnrollmentValidator enrollmentValidator;
 	private final CourseReader courseReader;
 
 	public List<CourseEnrollmentCountRes> getEnrolledCount(List<Long> courseIds) {
@@ -59,10 +59,18 @@ public class EnrollmentService {
 		Course course = courseReader.readWithPessimisticLock(courseId)
 			.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
 
+		// 동일 이름 과목 신청 여부 확인
+		if (enrollmentReader.existsByStudentIdAndSameCourseName(studentId, course.getName())) {
+			throw new EnrollmentException(EnrollmentErrorCode.ALREADY_ENROLLED_SAME_COURSE_NAME);
+		}
+
+		// 전공 제한 검증
+		enrollmentValidator.validateMajorPermission(student.getMajor(), course.getCourseInfo().getMajor());
+
 		// 학생 정책 조회 및 최대 학점 초과 여부 확인
 		StudentPolicy policy = studentPolicyReader.read(studentId)
 			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
-		studentPolicyValidator.validateCreditLimit(policy.getCurrentCredits(), course.getCredit(),
+		enrollmentValidator.validateCreditLimit(policy.getCurrentCredits(), course.getCredit(),
 			policy.getMaxCredits());
 
 		// 시간 중복 여부 확인
