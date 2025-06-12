@@ -20,6 +20,6 @@ public class EnrollmentReader {
 	}
 
 	public boolean existsByStudentIdAndSameCourseName(Long studentId, String courseName) {
-		return enrollmentRepository.existsByStudentIdAndCourse_Name(studentId, courseName);
+		return enrollmentRepository.existsByStudentIdAndCourseName(studentId, courseName);
 	}
 }
