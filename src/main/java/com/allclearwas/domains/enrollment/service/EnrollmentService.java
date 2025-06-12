@@ -15,6 +15,7 @@ import com.allclearwas.domains.enrollment.domain.Enrollment;
 import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 import com.allclearwas.domains.enrollment.dto.response.EnrollmentRes;
 import com.allclearwas.domains.enrollment.implement.EnrollmentAppender;
+import com.allclearwas.domains.enrollment.implement.EnrollmentDeleter;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
 import com.allclearwas.domains.enrollment.implement.EnrollmentValidator;
 import com.allclearwas.domains.student.domain.Student;
@@ -32,6 +33,7 @@ public class EnrollmentService {
 
 	private final EnrollmentReader enrollmentReader;
 	private final EnrollmentAppender enrollmentAppender;
+	private final EnrollmentDeleter enrollmentDeleter;
 	private final StudentReader studentReader;
 	private final StudentPolicyUpdater studentPolicyUpdater;
 	private final StudentPolicyReader studentPolicyReader;
@@ -94,5 +96,18 @@ public class EnrollmentService {
 
 		// 응답 반환
 		return EnrollmentRes.of(enrollment);
+	}
+
+	@Transactional
+	public void deleteEnrollment(Long enrollmentId, Long studentId) {
+
+		Enrollment enrollment = enrollmentReader.read(enrollmentId)
+				.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
+
+		if (!enrollmentReader.isOwnedByStudent(enrollment.getId(), studentId)) {
+			throw new EnrollmentException(EnrollmentErrorCode.UNAUTHORIZED_STUDENT);
+		}
+
+		enrollmentDeleter.delete(enrollment);
 	}
 }
