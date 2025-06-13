@@ -68,14 +68,11 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 	}
 
 	@Override
-	public boolean existsByEnrollmentIdAndStudentId(Long enrollmentId, Long studentId) {
+	public Long findCourseIdByEnrollmentId(Long enrollmentId) {
 		return queryFactory
-			.selectOne()
+			.select(enrollment.course.id)
 			.from(enrollment)
-			.where(
-				enrollment.id.eq(enrollmentId),
-				enrollment.student.id.eq(studentId)
-			)
-			.fetchFirst() != null;
+			.where(enrollment.id.eq(enrollmentId))
+			.fetchOne();
 	}
 }

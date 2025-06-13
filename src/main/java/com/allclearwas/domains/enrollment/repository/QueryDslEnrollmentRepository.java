@@ -6,5 +6,5 @@ public interface QueryDslEnrollmentRepository {
 
 	boolean existsByStudentIdAndCourseName(Long studentId, String courseName);
 
-	boolean existsByEnrollmentIdAndStudentId(Long enrollmentId, Long studentId);
+	Long findCourseIdByEnrollmentId(Long enrollmentId);
 }
