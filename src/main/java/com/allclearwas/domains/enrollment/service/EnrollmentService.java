@@ -11,10 +11,12 @@ import com.allclearwas.common.exception.student.StudentErrorCode;
 import com.allclearwas.common.exception.student.StudentException;
 import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.implement.CourseReader;
+import com.allclearwas.domains.course.implement.CourseUpdater;
 import com.allclearwas.domains.enrollment.domain.Enrollment;
 import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 import com.allclearwas.domains.enrollment.dto.response.EnrollmentRes;
 import com.allclearwas.domains.enrollment.implement.EnrollmentAppender;
+import com.allclearwas.domains.enrollment.implement.EnrollmentDeleter;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
 import com.allclearwas.domains.enrollment.implement.EnrollmentValidator;
 import com.allclearwas.domains.student.domain.Student;
@@ -24,7 +26,9 @@ import com.allclearwas.domains.student.implement.StudentPolicyUpdater;
 import com.allclearwas.domains.student.implement.StudentReader;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -32,11 +36,13 @@ public class EnrollmentService {
 
 	private final EnrollmentReader enrollmentReader;
 	private final EnrollmentAppender enrollmentAppender;
+	private final EnrollmentDeleter enrollmentDeleter;
 	private final StudentReader studentReader;
 	private final StudentPolicyUpdater studentPolicyUpdater;
 	private final StudentPolicyReader studentPolicyReader;
 	private final EnrollmentValidator enrollmentValidator;
 	private final CourseReader courseReader;
+	private final CourseUpdater courseUpdater;
 
 	public List<CourseEnrollmentCountRes> getEnrolledCount(List<Long> courseIds) {
 		List<CourseEnrollmentCountRes> countList = courseReader.getEnrollmentCount(courseIds);
@@ -84,15 +90,53 @@ public class EnrollmentService {
 		}
 
 		// 수강 인원 증가
-		course.incrementParticipant();
+		log.info("[수강신청 Before] {} 강의 신청자 수: {}", course.getName(), course.getParticipant());
+		courseUpdater.increaseCourseParticipant(course);
+		log.info("[수강신청 After] {} 강의 신청자 수: {}", course.getName(), course.getParticipant());
 
 		// Enrollment 저장
 		Enrollment enrollment = enrollmentAppender.save(student, course);
 
-		// 학생 학점 갱신
-		studentPolicyUpdater.updateStudentCredits(policy, course.getCredit());
+		// 학생 학점 증가
+		studentPolicyUpdater.increaseStudentCredits(policy, course.getCredit());
 
 		// 응답 반환
 		return EnrollmentRes.of(enrollment);
+	}
+
+	@Transactional
+	public void deleteEnrollment(Long enrollmentId, Long studentId) {
+
+		// 수강신청 정보 조회
+		Enrollment enrollment = enrollmentReader.read(enrollmentId)
+				.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
+
+
+		// 수강신청 정보 소유자 검증
+		if (!enrollmentReader.isOwnedByStudent(enrollment.getId(), studentId)) {
+			throw new EnrollmentException(EnrollmentErrorCode.UNAUTHORIZED_STUDENT);
+		}
+
+		// 강의 ID 조회
+		Long courseId = enrollmentReader.readCourseId(enrollment.getId());
+
+		// 과목 정보 조회 및 락
+		Course course = courseReader.readWithPessimisticLock(courseId)
+			.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
+
+		// 학생 정책 조회
+		StudentPolicy policy = studentPolicyReader.read(studentId)
+			.orElseThrow(() -> new StudentException(StudentErrorCode.STUDENT_POLICY_NOT_FOUND));
+
+		// 수강 인원 감소
+		log.info("[수강취소 Before] {} 강의 신청자 수: {}", course.getName(), course.getParticipant());
+		courseUpdater.decreaseCourseParticipant(course);
+		log.info("[수강취소 After] {} 강의 신청자 수 {}", course.getName(), course.getParticipant());
+
+		// 학생 학점 감소
+		studentPolicyUpdater.decreaseStudentCredits(policy, course.getCredit());
+
+		// 수강 신청 정보 삭제
+		enrollmentDeleter.delete(enrollment);
 	}
 }

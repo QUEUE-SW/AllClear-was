@@ -9,7 +9,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class StudentPolicyUpdater {
 
-	public void updateStudentCredits(StudentPolicy policy, int additionalCredits) {
-		policy.updateCurrentCredits(additionalCredits);
+	public void increaseStudentCredits(StudentPolicy policy, int additionalCredits) {
+		policy.increaseCurrentCredits(additionalCredits);
+	}
+
+	public void decreaseStudentCredits(StudentPolicy policy, int additionalCredits) {
+		policy.decreaseCurrentCredits(additionalCredits);
 	}
 }

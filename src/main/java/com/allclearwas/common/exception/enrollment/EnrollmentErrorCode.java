@@ -23,7 +23,8 @@ public enum EnrollmentErrorCode implements BaseErrorCode {
 	COURSE_TIME_OVERLAP(StatusCode.CONFLICT, ReasonCode.REQUEST_CONFLICT_WITH_CURRENT_STATE_OF_RESOURCE,
 		"기존 신청한 과목과 시간이 중복됩니다."),
 	NO_AVAILABLE_SEATS(StatusCode.CONFLICT, ReasonCode.REQUEST_CONFLICT_WITH_CURRENT_STATE_OF_RESOURCE,
-		"해당 과목의 여석이 없습니다.");
+		"해당 과목의 여석이 없습니다."),
+	UNAUTHORIZED_STUDENT(StatusCode.UNAUTHORIZED, ReasonCode.INSUFFICIENT_PERMISSIONS, "다른 학생의 수강신청 정보에 접근할 수 없습니다.");
 
 	private final StatusCode statusCode;
 	private final ReasonCode reasonCode;

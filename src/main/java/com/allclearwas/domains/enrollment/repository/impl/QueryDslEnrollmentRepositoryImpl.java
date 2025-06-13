@@ -66,4 +66,13 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 			)
 			.fetchFirst() != null;
 	}
+
+	@Override
+	public Long findCourseIdByEnrollmentId(Long enrollmentId) {
+		return queryFactory
+			.select(enrollment.course.id)
+			.from(enrollment)
+			.where(enrollment.id.eq(enrollmentId))
+			.fetchOne();
+	}
 }
