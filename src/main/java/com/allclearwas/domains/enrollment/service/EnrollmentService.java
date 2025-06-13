@@ -11,6 +11,7 @@ import com.allclearwas.common.exception.student.StudentErrorCode;
 import com.allclearwas.common.exception.student.StudentException;
 import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.implement.CourseReader;
+import com.allclearwas.domains.course.implement.CourseUpdater;
 import com.allclearwas.domains.enrollment.domain.Enrollment;
 import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 import com.allclearwas.domains.enrollment.dto.response.EnrollmentRes;
@@ -41,6 +42,7 @@ public class EnrollmentService {
 	private final StudentPolicyReader studentPolicyReader;
 	private final EnrollmentValidator enrollmentValidator;
 	private final CourseReader courseReader;
+	private final CourseUpdater courseUpdater;
 
 	public List<CourseEnrollmentCountRes> getEnrolledCount(List<Long> courseIds) {
 		List<CourseEnrollmentCountRes> countList = courseReader.getEnrollmentCount(courseIds);
@@ -89,7 +91,7 @@ public class EnrollmentService {
 
 		// 수강 인원 증가
 		log.info("[수강신청 Before] {} 강의 신청자 수: {}", course.getName(), course.getParticipant());
-		course.incrementParticipant();
+		courseUpdater.increaseCourseParticipant(course);
 		log.info("[수강신청 After] {} 강의 신청자 수: {}", course.getName(), course.getParticipant());
 
 		// Enrollment 저장
@@ -128,7 +130,7 @@ public class EnrollmentService {
 
 		// 수강 인원 감소
 		log.info("[수강취소 Before] {} 강의 신청자 수: {}", course.getName(), course.getParticipant());
-		course.decrementParticipant();
+		courseUpdater.decreaseCourseParticipant(course);
 		log.info("[수강취소 After] {} 강의 신청자 수 {}", course.getName(), course.getParticipant());
 
 		// 학생 학점 감소
