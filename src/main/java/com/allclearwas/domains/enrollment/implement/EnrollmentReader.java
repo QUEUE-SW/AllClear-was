@@ -23,7 +23,7 @@ public class EnrollmentReader {
 	}
 
 	public boolean isOwnedByStudent(Long enrollmentId, Long studentId) {
-		return enrollmentRepository.existsByEnrollmentIdAndStudentId(enrollmentId, studentId);
+		return enrollmentRepository.existsByIdAndStudentId(enrollmentId, studentId);
 	}
 
 	public boolean existsByStudentIdAndSameCourseName(Long studentId, String courseName) {
@@ -32,6 +32,10 @@ public class EnrollmentReader {
 
 	public boolean existsOverlappingTime(Long studentId, Long courseId) {
 		return enrollmentRepository.existsOverlappingTime(studentId, courseId);
+	}
+
+	public Long readCourseId(Long enrollmentId) {
+		return enrollmentRepository.findCourseIdByEnrollmentId(enrollmentId);
 	}
 
 }
