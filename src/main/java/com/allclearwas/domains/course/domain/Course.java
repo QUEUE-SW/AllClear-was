@@ -65,4 +65,8 @@ public class Course {
 	public void incrementParticipant() {
 		this.participant++;
 	}
+
+	public void decrementParticipant() {
+		this.participant--;
+	}
 }
