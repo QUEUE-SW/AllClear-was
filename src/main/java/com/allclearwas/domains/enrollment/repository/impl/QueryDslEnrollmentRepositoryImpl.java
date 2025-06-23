@@ -26,17 +26,18 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 		Boolean exists = queryFactory
 			.selectOne()
 			.from(courseTime)
-			.where(courseTime.course.id.eq(newCourseId), JPAExpressions.selectOne()
-				.from(enrollment)
-				.join(enrollment.course, course)
-				.join(courseTimeSub)
-				.on(courseTimeSub.course.eq(course))
-				.where(enrollment.student.id.eq(studentId),
-					courseTimeSub.dayOfWeek.eq(courseTime.dayOfWeek),
-					courseTimeSub.startTime.loe(courseTime.endTime),
-					courseTimeSub.endTime.goe(courseTime.startTime)
-				)
-				.exists())
+			.where(courseTime.course.id.eq(newCourseId),
+				JPAExpressions.selectOne()
+					.from(enrollment)
+					.join(enrollment.course, course)
+					.join(courseTimeSub)
+					.on(courseTimeSub.course.eq(course))
+					.where(enrollment.student.id.eq(studentId),
+						courseTimeSub.dayOfWeek.eq(courseTime.dayOfWeek),
+						courseTimeSub.startTime.loe(courseTime.endTime),
+						courseTimeSub.endTime.goe(courseTime.startTime)
+					)
+					.exists())
 			.fetchFirst() != null;
 
 		return exists;
