@@ -23,32 +23,17 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 
 	@Override
 	public boolean existsOverlappingTime(Long studentId, Long newCourseId) {
-		Boolean exists = queryFactory
-			.selectOne()
-			.from(enrollment)
-			.join(enrollment.course, course)
-			.join(courseTime).on(courseTime.course.eq(course))
-			.where(
-				enrollment.student.id.eq(studentId),
-				courseTime.dayOfWeek.in(
-					JPAExpressions
-						.select(courseTimeSub.dayOfWeek)
-						.from(courseTimeSub)
-						.where(courseTimeSub.course.id.eq(newCourseId))
-				),
-				courseTime.startTime.lt(
-					JPAExpressions
-						.select(courseTimeSub.endTime.min())
-						.from(courseTimeSub)
-						.where(courseTimeSub.course.id.eq(newCourseId))
-				),
-				courseTime.endTime.gt(
-					JPAExpressions
-						.select(courseTimeSub.startTime.max())
-						.from(courseTimeSub)
-						.where(courseTimeSub.course.id.eq(newCourseId))
-				)
-			)
+		Boolean exists = queryFactory.selectOne()
+			.from(courseTime)
+			.where(courseTime.course.id.eq(newCourseId), JPAExpressions.selectOne()
+				.from(enrollment)
+				.join(enrollment.course, course)
+				.join(courseTimeSub)
+				.on(courseTimeSub.course.eq(course))
+				.where(enrollment.student.id.eq(studentId), courseTimeSub.dayOfWeek.eq(courseTime.dayOfWeek),
+					courseTimeSub.startTime.lt(courseTime.endTime).or(courseTimeSub.startTime.eq(courseTime.endTime)),
+					courseTimeSub.endTime.gt(courseTime.startTime).or(courseTimeSub.endTime.eq(courseTime.startTime)))
+				.exists())
 			.fetchFirst() != null;
 
 		return exists;
@@ -56,21 +41,16 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 
 	@Override
 	public boolean existsByStudentIdAndCourseName(Long studentId, String courseName) {
-		return queryFactory
-			.selectOne()
+		return queryFactory.selectOne()
 			.from(enrollment)
 			.join(enrollment.course, course)
-			.where(
-				enrollment.student.id.eq(studentId),
-				course.name.eq(courseName)
-			)
+			.where(enrollment.student.id.eq(studentId), course.name.eq(courseName))
 			.fetchFirst() != null;
 	}
 
 	@Override
 	public Long findCourseIdByEnrollmentId(Long enrollmentId) {
-		return queryFactory
-			.select(enrollment.course.id)
+		return queryFactory.select(enrollment.course.id)
 			.from(enrollment)
 			.where(enrollment.id.eq(enrollmentId))
 			.fetchOne();
