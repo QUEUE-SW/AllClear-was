@@ -23,14 +23,16 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 
 	@Override
 	public boolean existsOverlappingTime(Long studentId, Long newCourseId) {
-		Boolean exists = queryFactory.selectOne()
+		Boolean exists = queryFactory
+			.selectOne()
 			.from(courseTime)
 			.where(courseTime.course.id.eq(newCourseId), JPAExpressions.selectOne()
 				.from(enrollment)
 				.join(enrollment.course, course)
 				.join(courseTimeSub)
 				.on(courseTimeSub.course.eq(course))
-				.where(enrollment.student.id.eq(studentId), courseTimeSub.dayOfWeek.eq(courseTime.dayOfWeek),
+				.where(enrollment.student.id.eq(studentId),
+					courseTimeSub.dayOfWeek.eq(courseTime.dayOfWeek),
 					courseTimeSub.startTime.loe(courseTime.endTime),
 					courseTimeSub.endTime.goe(courseTime.startTime)
 				)
