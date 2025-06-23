@@ -31,8 +31,9 @@ public class QueryDslEnrollmentRepositoryImpl implements QueryDslEnrollmentRepos
 				.join(courseTimeSub)
 				.on(courseTimeSub.course.eq(course))
 				.where(enrollment.student.id.eq(studentId), courseTimeSub.dayOfWeek.eq(courseTime.dayOfWeek),
-					courseTimeSub.startTime.lt(courseTime.endTime).or(courseTimeSub.startTime.eq(courseTime.endTime)),
-					courseTimeSub.endTime.gt(courseTime.startTime).or(courseTimeSub.endTime.eq(courseTime.startTime)))
+					courseTimeSub.startTime.loe(courseTime.endTime),
+					courseTimeSub.endTime.goe(courseTime.startTime)
+				)
 				.exists())
 			.fetchFirst() != null;
 
