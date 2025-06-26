@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
@@ -19,7 +18,7 @@ import com.allclearwas.domains.student.type.Semester;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@Component
+// @Component
 @RequiredArgsConstructor
 public class StudentDataInitializer implements CommandLineRunner {
 
