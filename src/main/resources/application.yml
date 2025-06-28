@@ -51,6 +51,6 @@ spring:
 
 logging:
   level:
-    com.allclearwas: debug
-    org.hibernate.sql: debug
-    org.hibernate.orm.jdbc.bind: trace
+    com.allclearwas: info
+    org.hibernate.sql: info
+    org.hibernate.orm.jdbc.bind: off
