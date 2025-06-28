@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomTomcatConfig {
 
 	// 🧪 여기서 스레드 수와 큐 크기를 조정하며 테스트
-	private static final int MAX_THREADS = 400;
+	private static final int MAX_THREADS = 300;
 	private static final int QUEUE_CAPACITY = 150;
 
 	@Bean
