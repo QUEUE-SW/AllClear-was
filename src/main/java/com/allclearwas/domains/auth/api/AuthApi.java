@@ -39,25 +39,25 @@ public interface AuthApi {
 
 
 
-	@Operation(summary = "학생 로그인", description = "학생 로그인을 진행합니다. 미인증 사용자만 가능합니다.")
-	@ApiResponse(responseCode = "200", description = "로그인 성공", content = @Content(mediaType = "application/json", examples = {
-		@ExampleObject(name = "성공", value = """
-			{
-			    "code": "2000",
-			    "message": "요청에 성공하였습니다.",
-			    "data": {
-			        "id": 1,
-			        "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJpZGVudGlmaWVyIjoib3duZXIwNjAzIiwib3duZXJJZCI6MSwiZXhwIjoxNzI5NDg5NDUwfQ.r-8H7XGxz1-IP2cNo3jWgEuMJAxoL_HCC11kXzhDWuAqBjJYqcReXdIzA3lvQITiAewrKppZKNgcu20Tuf785A"
-			    }
-			}
-			""")}))
-	@ApiResponse(responseCode = "401", description = "비밀번호 미일치", content = @Content(mediaType = "application/json", examples = {
-		@ExampleObject(name = "실패", value = """
-			{
-			    "code": "4010",
-			    "message": "입력한 비밀번호가 현재 비밀번호와 일치하지 않습니다.",
-			    "errors": []
-			}
-			""")}))
-	ResponseEntity<?> signIn(@Valid @RequestBody SignInReq signInReq);
+	// @Operation(summary = "학생 로그인", description = "학생 로그인을 진행합니다. 미인증 사용자만 가능합니다.")
+	// @ApiResponse(responseCode = "200", description = "로그인 성공", content = @Content(mediaType = "application/json", examples = {
+	// 	@ExampleObject(name = "성공", value = """
+	// 		{
+	// 		    "code": "2000",
+	// 		    "message": "요청에 성공하였습니다.",
+	// 		    "data": {
+	// 		        "id": 1,
+	// 		        "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJpZGVudGlmaWVyIjoib3duZXIwNjAzIiwib3duZXJJZCI6MSwiZXhwIjoxNzI5NDg5NDUwfQ.r-8H7XGxz1-IP2cNo3jWgEuMJAxoL_HCC11kXzhDWuAqBjJYqcReXdIzA3lvQITiAewrKppZKNgcu20Tuf785A"
+	// 		    }
+	// 		}
+	// 		""")}))
+	// @ApiResponse(responseCode = "401", description = "비밀번호 미일치", content = @Content(mediaType = "application/json", examples = {
+	// 	@ExampleObject(name = "실패", value = """
+	// 		{
+	// 		    "code": "4010",
+	// 		    "message": "입력한 비밀번호가 현재 비밀번호와 일치하지 않습니다.",
+	// 		    "errors": []
+	// 		}
+	// 		""")}))
+	// ResponseEntity<?> signIn(@Valid @RequestBody SignInReq signInReq);
 }

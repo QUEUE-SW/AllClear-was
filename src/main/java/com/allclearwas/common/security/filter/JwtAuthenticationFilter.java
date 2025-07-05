@@ -17,6 +17,7 @@ import com.allclearwas.common.exception.GlobalException;
 import com.allclearwas.common.exception.jwt.TokenErrorCode;
 import com.allclearwas.common.exception.jwt.TokenException;
 import com.allclearwas.common.jwt.AccessTokenProvider;
+import com.allclearwas.domains.session.service.SessionService;
 
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -32,6 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private final AccessTokenProvider accessTokenProvider;
 	private final UserDetailsService userDetailsService;
+	private final SessionService sessionService;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -54,6 +56,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		UserDetails userDetails = getUserDetails(id);
 
 		authenticate(userDetails);
+
+		sessionService.save(Long.valueOf(id));
 
 		filterChain.doFilter(request, response);
 	}
