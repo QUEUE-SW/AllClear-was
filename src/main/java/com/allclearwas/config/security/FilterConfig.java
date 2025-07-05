@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import com.allclearwas.common.jwt.AccessTokenProvider;
 import com.allclearwas.common.security.filter.JwtAuthenticationFilter;
 import com.allclearwas.common.security.filter.JwtExceptionFilter;
+import com.allclearwas.domains.session.service.SessionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class FilterConfig {
 
 	private final AccessTokenProvider accessTokenProvider;
 	private final UserDetailsService userDetailsService;
+	private final SessionService sessionService;
 	private final ObjectMapper objectMapper;
 
 
@@ -24,7 +26,8 @@ public class FilterConfig {
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {
 		return new JwtAuthenticationFilter(
 			accessTokenProvider,
-			userDetailsService
+			userDetailsService,
+			sessionService
 		);
 	}
 
