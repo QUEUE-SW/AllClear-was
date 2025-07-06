@@ -44,7 +44,7 @@ public class SessionService {
 	@Scheduled(fixedDelay = 60_000)
 	public void cleanInactiveUsers() {
 		int before = sessionManager.getCurrentUserCount();
-		sessionManager.removeInactiveUsers(180_000);
+		sessionManager.removeInactiveUsers(600_000);
 		int after = sessionManager.getCurrentUserCount();
 		log.info("[Session] {}명 제거됨 (before: {}, after: {})", before - after, before, after);
 	}
