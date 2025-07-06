@@ -12,7 +12,6 @@ public class SessionManager {
 
 	private final int MAX_CONCURRENT_USERS = 200;
 	private final Map<Long, Long> activeUsers;
-	private volatile int pendingNotificationCount = 0;
 
 
 	public void registerUser(Long studentId) {
@@ -40,16 +39,4 @@ public class SessionManager {
 		activeUsers.entrySet().removeIf(entry -> now - entry.getValue() > timeoutMillis);
 	}
 
-	public int getPendingNotificationCount() {
-		return pendingNotificationCount;
-	}
-
-	public void increasePendingNotificationCount(int n) {
-		pendingNotificationCount += n;
-	}
-
-	public void decreasePendingNotificationCount(int n) {
-		pendingNotificationCount -= n;
-		if (pendingNotificationCount < 0) pendingNotificationCount = 0;
-	}
 }

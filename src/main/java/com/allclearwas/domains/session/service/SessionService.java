@@ -37,17 +37,13 @@ public class SessionService {
 	public void checkAndNotifyQueue() {
 		int current = sessionManager.getCurrentUserCount();
 		int capacity = sessionManager.getMaxConcurrentUsers();
-		int pending = sessionManager.getPendingNotificationCount();
 
 		int available = capacity - current;
-		int effectiveAvailable = available - pending;
 
-		log.info("[Session] 현재 세션 수: {} / {}, 여유 슬롯: {}, 미처리 알림 수: {}, 실제 통보할 여유 슬롯: {}",
-			current, capacity, available, pending, effectiveAvailable);
+		log.info("[Session] 현재 세션 수: {} / {}, 여유 슬롯: {}", current, capacity, available);
 
-		if (effectiveAvailable > 0) {
-			sessionNotifier.notify(effectiveAvailable);  // 대기열 서버에 알림
-			sessionManager.increasePendingNotificationCount(effectiveAvailable);
+		if (available > 0) {
+			sessionNotifier.notify(available);
 		}
 	}
 
@@ -59,7 +55,4 @@ public class SessionService {
 		log.info("[Session] {}명 제거됨 (before: {}, after: {})", before - after, before, after);
 	}
 
-	public void notifySuccess(int count) {
-		sessionManager.decreasePendingNotificationCount(count);
-	}
 }
