@@ -14,6 +14,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.allclearwas.common.exception.BaseErrorCode;
 import com.allclearwas.common.exception.GlobalException;
+import com.allclearwas.common.exception.auth.AuthErrorCode;
+import com.allclearwas.common.exception.auth.AuthException;
 import com.allclearwas.common.exception.jwt.TokenErrorCode;
 import com.allclearwas.common.exception.jwt.TokenException;
 import com.allclearwas.common.jwt.AccessTokenProvider;
@@ -53,6 +55,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		String id = getClaims(token);
 
+		if (sessionService.isFull()) {
+			handleJwtException(AuthErrorCode.FULL_CONCURRENT_USERS);
+		}
 		sessionService.save(Long.valueOf(id));
 		log.info("session save: {}", id);
 

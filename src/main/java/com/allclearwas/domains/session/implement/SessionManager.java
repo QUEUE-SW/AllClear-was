@@ -16,9 +16,6 @@ public class SessionManager {
 	private final Map<Long, Long> activeUsers;
 
 	public void registerUser(Long studentId) {
-		if (activeUsers.size() >= MAX_CONCURRENT_USERS) {
-			throw new AuthException(AuthErrorCode.FULL_CONCURRENT_USERS);
-		}
 		activeUsers.put(studentId, System.currentTimeMillis());
 	}
 

@@ -29,6 +29,10 @@ public class SessionService {
 		sessionManager.reset();
 	}
 
+	public boolean isFull() {
+		return sessionManager.getMaxConcurrentUsers() <= sessionManager.getCurrentUserCount();
+	}
+
 	@Scheduled(fixedDelay = 10_000)
 	public void checkAndNotifyQueue() {
 		int current = sessionManager.getCurrentUserCount();
