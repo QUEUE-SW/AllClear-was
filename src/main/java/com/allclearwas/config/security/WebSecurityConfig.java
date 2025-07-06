@@ -29,6 +29,7 @@ public class WebSecurityConfig {
 				request.requestMatchers("/api/v1/auth/sign-out").authenticated();
 				request.requestMatchers("/api/v1/auth/**")
 					.anonymous();
+				request.requestMatchers("/api/v1/session/**").permitAll();
 				request.anyRequest().permitAll();
 			})
 			.with(filterRegisterConfig, Customizer.withDefaults())

@@ -52,4 +52,8 @@ public class SessionService {
 		int after = sessionManager.getCurrentUserCount();
 		log.info("[Session] {}명 제거됨 (before: {}, after: {})", before - after, before, after);
 	}
+
+	public void notifySuccess(int count) {
+		sessionManager.decreasePendingNotificationCount(count);
+	}
 }
