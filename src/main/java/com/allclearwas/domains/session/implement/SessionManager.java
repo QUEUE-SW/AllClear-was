@@ -26,6 +26,10 @@ public class SessionManager {
 		activeUsers.remove(studentId);
 	}
 
+	public void reset() {
+		activeUsers.clear();
+	}
+
 	public int getCurrentUserCount() {
 		return activeUsers.size();
 	}

@@ -25,6 +25,10 @@ public class SessionService {
 		sessionManager.remove(studentId);
 	}
 
+	public void reset() {
+		sessionManager.reset();
+	}
+
 	@Scheduled(fixedDelay = 10_000)
 	public void checkAndNotifyQueue() {
 		int current = sessionManager.getCurrentUserCount();
