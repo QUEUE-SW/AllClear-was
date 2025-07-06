@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SessionManager {
 
-	private final int MAX_CONCURRENT_USERS = 200;
+	private final int MAX_CONCURRENT_USERS = 1;
 	private final Map<Long, Long> activeUsers;
 
 	public void registerUser(Long studentId) {
