@@ -3,6 +3,8 @@ package com.allclearwas.domains.session.implement;
 import java.util.Map;
 
 import com.allclearwas.common.annotation.Implementation;
+import com.allclearwas.common.exception.auth.AuthErrorCode;
+import com.allclearwas.common.exception.auth.AuthException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +16,9 @@ public class SessionManager {
 	private final Map<Long, Long> activeUsers;
 
 	public void registerUser(Long studentId) {
+		if (activeUsers.size() >= MAX_CONCURRENT_USERS) {
+			throw new AuthException(AuthErrorCode.FULL_CONCURRENT_USERS);
+		}
 		activeUsers.put(studentId, System.currentTimeMillis());
 	}
 
