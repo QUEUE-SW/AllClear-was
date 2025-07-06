@@ -30,7 +30,7 @@ public class SessionService {
 	}
 
 	public boolean isFull() {
-		return sessionManager.getMaxConcurrentUsers() <= sessionManager.getCurrentUserCount();
+		return sessionManager.getMaxConcurrentUsers() < sessionManager.getCurrentUserCount();
 	}
 
 	@Scheduled(fixedDelay = 10_000)
