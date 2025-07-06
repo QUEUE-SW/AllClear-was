@@ -40,6 +40,10 @@ public class SessionManager {
 		activeUsers.entrySet().removeIf(entry -> now - entry.getValue() > timeoutMillis);
 	}
 
+	public int getPendingNotificationCount() {
+		return pendingNotificationCount;
+	}
+
 	public void increasePendingNotificationCount(int n) {
 		pendingNotificationCount += n;
 	}
