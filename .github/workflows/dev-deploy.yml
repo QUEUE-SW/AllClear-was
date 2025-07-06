@@ -67,6 +67,6 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/allclear-was-dev:latest
 
             echo "🚀 새 컨테이너 실행"
-            docker run -d --name allclear-was-dev -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/allclear-was-dev:latest
+            docker run -d --name allclear-was-dev --network my-network -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/allclear-was-dev:latest
             
             docker logs -f allclear-was-dev > /home/ubuntu/logs/dev/allclear-dev-$(date +%F).log 2>&1 &
