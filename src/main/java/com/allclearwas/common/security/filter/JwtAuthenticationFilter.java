@@ -55,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		String id = getClaims(token);
 
-		if (sessionService.isFull()) {
+		if (sessionService.isFull() && !sessionService.isActive(Long.valueOf(id))) {
 			handleJwtException(AuthErrorCode.FULL_CONCURRENT_USERS);
 		}
 		sessionService.save(Long.valueOf(id));

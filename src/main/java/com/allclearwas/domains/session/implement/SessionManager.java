@@ -22,6 +22,10 @@ public class SessionManager {
 		activeUsers.remove(studentId);
 	}
 
+	public Long getActiveUser(Long studentId) {
+		return activeUsers.getOrDefault(studentId, null);
+	}
+
 	public void reset() {
 		activeUsers.clear();
 	}

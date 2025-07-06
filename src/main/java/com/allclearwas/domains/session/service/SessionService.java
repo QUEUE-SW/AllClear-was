@@ -33,6 +33,10 @@ public class SessionService {
 		return sessionManager.getMaxConcurrentUsers() < sessionManager.getCurrentUserCount();
 	}
 
+	public boolean isActive(Long studentId) {
+		return sessionManager.getActiveUser(studentId) != null;
+	}
+
 	@Scheduled(fixedDelay = 10_000)
 	public void checkAndNotifyQueue() {
 		int current = sessionManager.getCurrentUserCount();
