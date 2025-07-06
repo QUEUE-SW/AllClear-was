@@ -26,9 +26,9 @@ public class WebSecurityConfig {
 			.cors(Customizer.withDefaults())
 			.authorizeHttpRequests(request -> {
 				request.requestMatchers("/api-docs/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger").permitAll();
+				request.requestMatchers("/api/v1/auth/sign-out").authenticated();
 				request.requestMatchers("/api/v1/auth/**")
 					.anonymous();
-				request.requestMatchers("/api/v1/sign-out").authenticated();
 				request.anyRequest().permitAll();
 			})
 			.with(filterRegisterConfig, Customizer.withDefaults())
