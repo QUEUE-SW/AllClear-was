@@ -53,11 +53,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		String id = getClaims(token);
 
+		sessionService.save(Long.valueOf(id));
+		log.info("session save: {}", id);
+
 		UserDetails userDetails = getUserDetails(id);
 
 		authenticate(userDetails);
 
-		sessionService.save(Long.valueOf(id));
 
 		filterChain.doFilter(request, response);
 	}
@@ -78,6 +80,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			userDetails = userDetailsService.loadUserByUsername(studentId);
 		} catch (UsernameNotFoundException e) {
 			log.error("UsernameNotFoundException = {}", e.getMessage());
+			sessionService.remove(Long.valueOf(studentId));
 			handleJwtException(TokenErrorCode.INVALID_TOKEN);
 		}
 		return userDetails;
