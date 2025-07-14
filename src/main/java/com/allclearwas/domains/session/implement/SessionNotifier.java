@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SessionNotifier {
 
 	private final RestTemplate restTemplate;
-	private final String queueUrl = "http://queue-was-dev:8081/api/v1/queue/notify";
+	private final String queueUrl = "http://queue-was-dev:8081/api/v1/sse/notify";
 
 	@Async
 	public void notify(int count) {
