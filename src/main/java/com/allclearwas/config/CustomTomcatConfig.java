@@ -1,8 +1,8 @@
 package com.allclearwas.config;
 
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.coyote.AbstractProtocol;
 import org.apache.coyote.ProtocolHandler;
@@ -18,8 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomTomcatConfig {
 
 	// 🧪 여기서 스레드 수와 큐 크기를 조정하며 테스트
-	private static final int MAX_THREADS = 300;
-	private static final int QUEUE_CAPACITY = 150;
+	private static final int MAX_THREADS = 100;
+	private static final int QUEUE_CAPACITY = 20;
 
 	@Bean
 	public WebServerFactoryCustomizer<TomcatServletWebServerFactory> customTomcatConnector() {
