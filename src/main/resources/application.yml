@@ -11,6 +11,10 @@ spring:
       maximum-pool-size: 100
       minimum-idle: 50
 
+  data:
+    redis:
+      host: ${REDIS_HOST:default}
+      port: ${REDIS_PORT:6379}
 
   sql:
     init:
