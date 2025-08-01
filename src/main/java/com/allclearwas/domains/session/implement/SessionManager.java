@@ -1,6 +1,9 @@
 package com.allclearwas.domains.session.implement;
 
-import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import com.allclearwas.common.annotation.Implementation;
 
@@ -10,37 +13,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SessionManager {
 
+	private static final String SESSION_KEY_PREFIX = "session:";
+	private static final long SESSION_TTL_MILLIS = 600_000;
+	private final StringRedisTemplate stringRedisTemplate;
 	private final int MAX_CONCURRENT_USERS = 200;
-	private final Map<Long, Long> activeUsers;
-
 
 	public void registerUser(Long studentId) {
-		activeUsers.put(studentId, System.currentTimeMillis());
+		String key = SESSION_KEY_PREFIX + studentId;
+		stringRedisTemplate.opsForValue().set(
+			key,
+			"active",
+			SESSION_TTL_MILLIS,
+			TimeUnit.MILLISECONDS
+		);
 	}
 
 	public void remove(Long studentId) {
-		activeUsers.remove(studentId);
+		stringRedisTemplate.delete(SESSION_KEY_PREFIX + studentId);
 	}
 
-	public Long getActiveUser(Long studentId) {
-		return activeUsers.getOrDefault(studentId, null);
+	public boolean isActive(Long studentId) {
+		Boolean hasKey = stringRedisTemplate.hasKey(SESSION_KEY_PREFIX + studentId);
+		return Boolean.TRUE.equals(hasKey);
 	}
 
 	public void reset() {
-		activeUsers.clear();
+		Set<String> keys = stringRedisTemplate.keys(SESSION_KEY_PREFIX + "*");
+		if (keys != null && !keys.isEmpty()) {
+			stringRedisTemplate.delete(keys);
+		}
 	}
 
 	public int getCurrentUserCount() {
-		return activeUsers.size();
+		Set<String> keys = stringRedisTemplate.keys(SESSION_KEY_PREFIX + "*");
+		return keys != null ? keys.size() : 0;
 	}
 
 	public int getMaxConcurrentUsers() {
 		return MAX_CONCURRENT_USERS;
 	}
-
-	public void removeInactiveUsers(long timeoutMillis) {
-		long now = System.currentTimeMillis();
-		activeUsers.entrySet().removeIf(entry -> now - entry.getValue() > timeoutMillis);
-	}
-
 }
