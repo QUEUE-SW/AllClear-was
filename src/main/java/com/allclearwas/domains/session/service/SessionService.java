@@ -34,7 +34,7 @@ public class SessionService {
 	}
 
 	public boolean isActive(Long studentId) {
-		return sessionManager.getActiveUser(studentId) != null;
+		return sessionManager.isActive(studentId);
 	}
 
 	@Scheduled(fixedDelay = 10_000)
@@ -50,13 +50,4 @@ public class SessionService {
 			sessionNotifier.notify(available);
 		}
 	}
-
-	@Scheduled(fixedDelay = 60_000)
-	public void cleanInactiveUsers() {
-		int before = sessionManager.getCurrentUserCount();
-		sessionManager.removeInactiveUsers(600_000);
-		int after = sessionManager.getCurrentUserCount();
-		log.info("[Session] {}명 제거됨 (before: {}, after: {})", before - after, before, after);
-	}
-
 }
