@@ -7,11 +7,15 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class RedisConfig {
 
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+		log.info("✅ RedisTemplate 연결 설정 완료 - factory={}", factory.getClass().getName());
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
 		template.setConnectionFactory(factory);
 		template.setKeySerializer(new StringRedisSerializer());
