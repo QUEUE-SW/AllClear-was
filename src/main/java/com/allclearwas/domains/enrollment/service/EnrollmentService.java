@@ -1,7 +1,6 @@
 package com.allclearwas.domains.enrollment.service;
 
-import java.util.List;
-
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +12,12 @@ import com.allclearwas.domains.course.domain.Course;
 import com.allclearwas.domains.course.implement.CourseReader;
 import com.allclearwas.domains.course.implement.CourseUpdater;
 import com.allclearwas.domains.enrollment.domain.Enrollment;
-import com.allclearwas.domains.enrollment.dto.response.CourseEnrollmentCountRes;
 import com.allclearwas.domains.enrollment.dto.response.EnrollmentRes;
 import com.allclearwas.domains.enrollment.implement.EnrollmentAppender;
 import com.allclearwas.domains.enrollment.implement.EnrollmentDeleter;
 import com.allclearwas.domains.enrollment.implement.EnrollmentReader;
 import com.allclearwas.domains.enrollment.implement.EnrollmentValidator;
+import com.allclearwas.domains.seat.service.SseSeatService;
 import com.allclearwas.domains.student.domain.Student;
 import com.allclearwas.domains.student.domain.StudentPolicy;
 import com.allclearwas.domains.student.implement.StudentPolicyReader;
@@ -43,11 +42,8 @@ public class EnrollmentService {
 	private final EnrollmentValidator enrollmentValidator;
 	private final CourseReader courseReader;
 	private final CourseUpdater courseUpdater;
-
-	public List<CourseEnrollmentCountRes> getEnrolledCount(List<Long> courseIds) {
-		List<CourseEnrollmentCountRes> countList = courseReader.getEnrollmentCount(courseIds);
-		return countList;
-	}
+	private final RedisTemplate<String, String> redisTemplate;
+	private final SseSeatService sseSeatService;
 
 	@Transactional
 	public EnrollmentRes enrollCourse(Long courseId, Long studentId) {
@@ -97,6 +93,12 @@ public class EnrollmentService {
 		// Enrollment 저장
 		Enrollment enrollment = enrollmentAppender.save(student, course);
 
+		// Redis 여석 감소 + SSE 알림 전송
+		String redisKey = "course:" + courseId + ":remaining";
+		redisTemplate.opsForValue().decrement(redisKey);
+		String remaining = redisTemplate.opsForValue().get(redisKey);
+		sseSeatService.notifyRemainingChanged(courseId, remaining);
+
 		// 학생 학점 증가
 		studentPolicyUpdater.increaseStudentCredits(policy, course.getCredit());
 
@@ -109,8 +111,7 @@ public class EnrollmentService {
 
 		// 수강신청 정보 조회
 		Enrollment enrollment = enrollmentReader.read(enrollmentId)
-				.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
-
+			.orElseThrow(() -> new EnrollmentException(EnrollmentErrorCode.ENROLLMENT_NOT_FOUND));
 
 		// 수강신청 정보 소유자 검증
 		if (!enrollmentReader.isOwnedByStudent(enrollment.getId(), studentId)) {
@@ -138,5 +139,11 @@ public class EnrollmentService {
 
 		// 수강 신청 정보 삭제
 		enrollmentDeleter.delete(enrollment);
+
+		// Redis 여석 감소 + SSE 알림 전송
+		String redisKey = "course:" + courseId + ":remaining";
+		redisTemplate.opsForValue().increment(redisKey);
+		String remaining = redisTemplate.opsForValue().get(redisKey);
+		sseSeatService.notifyRemainingChanged(courseId, remaining);
 	}
 }
