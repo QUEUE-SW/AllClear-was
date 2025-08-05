@@ -1,6 +1,5 @@
 package com.allclearwas.domains.enrollment;
 
-/*
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.DayOfWeek;
@@ -147,4 +146,3 @@ public class EnrollmentServiceTest extends TestDatabaseConfig {
 		assertEquals(40, course.getParticipant(), "Course의 participant 필드도 40이어야 함");
 	}
 }
-*/
