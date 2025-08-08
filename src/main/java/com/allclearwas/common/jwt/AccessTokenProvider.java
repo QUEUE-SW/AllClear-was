@@ -34,7 +34,6 @@ public class AccessTokenProvider {
 		this.accessExpireTime = accessExpireTime;
 	}
 
-
 	public String generateToken(Long studentId, String identifier) {
 		Date date = new Date();
 		return Jwts.builder()
@@ -43,7 +42,6 @@ public class AccessTokenProvider {
 			.expiration(createExpiredDate(date, accessExpireTime))
 			.compact();
 	}
-
 
 	public Map<String, Object> createClaims(Long studentId, String identifier) {
 		Map<String, Object> claims = new HashMap<>();
@@ -58,7 +56,6 @@ public class AccessTokenProvider {
 		}
 		return header;
 	}
-
 
 	public Claims getClaims(String token) throws TokenException {
 		try {
@@ -77,5 +74,25 @@ public class AccessTokenProvider {
 
 	public Date createExpiredDate(Date date, Long expirationTime) {
 		return new Date(date.getTime() + expirationTime);
+	}
+
+	public Long getStudentIdFromToken(String token) {
+		try {
+			Claims claims = getClaims(token);
+			Object id = claims.get("id");
+			if (id instanceof Integer) {
+				return ((Integer)id).longValue();
+			}
+			if (id instanceof Long) {
+				return (Long)id;
+			}
+			if (id instanceof String) {
+				return Long.parseLong((String)id);
+			}
+			throw new TokenException(TokenErrorCode.TOKEN_IS_MALFORMED);
+		} catch (Exception e) {
+			log.warn("🚨 studentId 추출 실패 - token={}, error={}", token, e.getMessage());
+			throw new TokenException(TokenErrorCode.TOKEN_IS_MALFORMED);
+		}
 	}
 }
