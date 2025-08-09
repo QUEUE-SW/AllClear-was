@@ -24,6 +24,8 @@ public class SseSeatService {
 		SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
 		emitterManager.addEmitter(studentId, emitter, courseIds);
 
+		asyncSender.send(emitter, "init", Map.of("status", "connected"));
+		
 		for (Long courseId : courseIds) {
 			String remaining = redisTemplate.opsForValue().get("course:" + courseId + ":remaining");
 			asyncSender.send(emitter, "seat", Map.of(
