@@ -27,6 +27,7 @@ public class SseSeatController {
 	@GetMapping(value = "/subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 	public SseEmitter subscribe(@RequestParam List<Long> courseIds,
 		@AuthenticationPrincipal SecurityUserDetails userDetails) {
+		log.info("subscribe 시작");
 		Long studentId = userDetails.getStudentId();
 		return sseSeatService.subscribe(studentId, courseIds);
 	}
