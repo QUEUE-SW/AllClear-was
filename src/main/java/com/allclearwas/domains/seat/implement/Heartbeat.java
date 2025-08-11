@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class Heartbeat {
@@ -17,6 +19,7 @@ public class Heartbeat {
 		sseEmitterManager.getEmitters().forEach((studentId, emitter) -> {
 			try {
 				emitter.send(SseEmitter.event().comment("ping"));
+				log.info("Heartbeat sse 알림 성공");
 			} catch (Exception e) {
 				sseEmitterManager.removeEmitter(studentId);
 			}
