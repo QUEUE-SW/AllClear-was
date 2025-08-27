@@ -60,3 +60,222 @@
 ---
 
 ## 📁 폴더 구조
+```
+📦AllClear-was
+ ┣ 📂.git
+ ┣ 📂.github
+ ┣ 📂gradle
+ ┣ 📂src
+ ┃ ┣ 📂main
+ ┃ ┃ ┣ 📂java
+ ┃ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┃ ┗ 📂allclearwas
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂common
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂annotation
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂swagger
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthenticationApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CommonApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Implementation.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂exception
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AuthException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂enrollment
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EnrollmentErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂jwt
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜TokenErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TokenException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂student
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ErrorCausedBy.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜GlobalException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ReasonCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StatusCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SwaggerGlobalErrorController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂handler
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ApiExceptionHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂jwt
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AccessTokenProvider.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ErrorResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SuccessResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂security
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂authentication
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomUserDetailService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SecurityUserDetails.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂filter
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtAuthenticationFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜JwtExceptionFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂handler
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtAccessDeniedHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜JwtAuthenticationEntryPoint.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂security
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜FilterConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜FilterRegisterConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebSecurityConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AsyncConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommonInitializer.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CorsConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CustomTomcatConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜QuerydslConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜RedisConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SessionConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SwaggerConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂domains
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AuthApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AuthController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂request
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SignInReq.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SignupReq.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SignInRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SignupRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂implement
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TokenGenerator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜AuthService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂course
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseListApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MyCourseListApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseListController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MyCourseListController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dao
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseListDao.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MyCourseListDao.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Course.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseInfo.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CourseTime.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂request
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CourseFilterReq.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseListRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MyCourseListRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂implement
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseReader.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CourseUpdater.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂impl
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜QueryDslCourseRepositoryImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseInfoRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseTimeRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜QueryDslCourseRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CourseService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂type
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Category.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Location.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Professor.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂enrollment
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EnrollmentApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentCapacityApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Enrollment.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂request
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseEnrollmentCountReq.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentReq.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CourseEnrollmentCountRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂implement
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EnrollmentAppender.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EnrollmentDeleter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EnrollmentReader.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂impl
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜QueryDslEnrollmentRepositoryImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EnrollmentRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜QueryDslEnrollmentRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂seat
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SseSeatController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂implement
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Heartbeat.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SeatManager.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SseAsyncSender.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SseEmitterManager.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SseSeatService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂session
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂implement
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SessionManager.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SessionNotifier.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SessionService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂student
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentPolicyApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentProfileApi.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentPolicyController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂devtool
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentDataInitializer.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Student.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentPolicy.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentCreditRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentProfileRes.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂implement
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentAppender.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentPolicyAppender.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentPolicyReader.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentPolicyUpdater.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentReader.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentValidator.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜StudentPolicyRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜StudentService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂type
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜College.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Department.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Major.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Semester.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜AllclearWasApplication.java
+ ┃ ┃ ┗ 📂resources
+ ┃ ┃ ┃ ┣ 📜application.yml
+ ┃ ┃ ┃ ┗ 📜data.sql
+ ┃ ┗ 📂test
+ ┃ ┃ ┗ 📂java
+ ┃ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┃ ┗ 📂allclearwas
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂domains
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂enrollment
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EnrollmentServiceTest.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜AllclearWasApplicationTests.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜application-test.yml
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜TestDatabaseConfig.java
+ ┣ 📜.gitattributes
+ ┣ 📜.gitignore
+ ┣ 📜build.gradle
+ ┣ 📜Dockerfile.dev
+ ┣ 📜Dockerfile.prod
+ ┣ 📜gradlew
+ ┣ 📜gradlew.bat
+ ┣ 📜README.md
+ ┗ 📜settings.gradle
+```
