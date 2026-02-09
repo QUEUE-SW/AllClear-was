@@ -1,5 +1,5 @@
 ## 🧭 소개
-AllClear-Was는 QUEUE-SW 프로젝트의 백엔드 서버로,
+AllClear-Was는 [QUEUE-SW](https://github.com/QUEUE-SW) 프로젝트의 백엔드 서버로,
 대규모 트래픽 환경에서도 안정적인 수강신청을 지원합니다.
 JMeter 기반 성능 테스트를 통해 병목 구간을 개선하며, 6단계 아키텍처 고도화를 거쳐
 Redis·SSE 기반 실시간 피드백과 확장성 있는 대기열 처리를 제공하는 것이 특징입니다.
